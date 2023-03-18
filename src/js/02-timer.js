@@ -6,7 +6,11 @@ const minutesValue = document.querySelector('[data-minutes]');
 const secondsValue = document.querySelector('[data-seconds]');
 
 let countdownInterval;
-
+flatpickr("#datetime-picker", {
+    enableTime: true,
+    minDate: "today",
+    dateFormat: "Y-m-d H:i",
+  });
 startButton.addEventListener('click', () => {
   const selectedDate = dateTimePicker._flatpickr.selectedDates[0];
 
@@ -26,7 +30,7 @@ startButton.addEventListener('click', () => {
   startButton.disabled = true;
 
   
-  const remainingTime = selectedDate.getTime() - Date.now();
+ let remainingTime = selectedDate.getTime() - Date.now();
 
   countdownInterval = setInterval(() => {
     const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
