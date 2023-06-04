@@ -1,39 +1,24 @@
 {
-  "name": "parcel-project-template",
+  "name": "
+  goit-js-hw-10",
   "version": "2.0.0",
   "description": "",
-<<<<<<< HEAD
   "homepage": "https://github.com/Lukaszc97/goit-js-hw-10.git",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "https://github.com/Lukaszc97/goit-js-hw-10.git"
+    "build": "parcel build src/*.html --public-url /parcel-project-template/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Lukaszc97/goit-js-hw-10.git"
-=======
-  "homepage": "https://github.com/Lukaszc97/goit-js-hw-09.git/",
-  "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-09/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Lukaszc97/goit-js-hw-09.git/"
->>>>>>> a212c3cced55dc4173da39d360b45b4eba37242f
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
-<<<<<<< HEAD
-    "url": "https://github.com/Lukaszc97/goit-js-hw-10.git"
-=======
-    "url": "https://github.com/Lukaszc97/goit-js-hw-09.git/"
->>>>>>> a212c3cced55dc4173da39d360b45b4eba37242f
+    "url": "https://github.com/goitacademy/parcel-project-template/issues"
   },
   "dependencies": {
-    "flatpickr": "^4.6.13",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
