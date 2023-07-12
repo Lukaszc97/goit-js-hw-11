@@ -19,16 +19,7 @@ searchForm.addEventListener("submit", function (event) {
   resetGallery(searchQuery);
 });
 
-// Funkcja resetująca galerię 
-function resetGallery(searchQuery) {
-  const gallery = document.querySelector(".gallery");
-  gallery.innerHTML = "";
-  page = 1; 
-  fetchedImages = 0; 
 
-  // Wywołanie funkcji wyszukiwania i otrzymanie danych
-  performSearch(searchQuery);
-}
 
 // Wywołanie żądania HTTP
 function performSearch(searchQuery) {
@@ -104,7 +95,17 @@ function fetchMoreImages() {
     });
 }
 
-
+// Funkcja resetująca galerię 
+function resetGallery(searchQuery) {
+  const gallery = document.querySelector(".gallery");
+  gallery.innerHTML = "";
+  fetchedImages = 0; 
+  window.scrollTo({
+    top: 0,
+    left: 0,})
+  // Wywołanie funkcji wyszukiwania i otrzymanie danych
+  performSearch(searchQuery);
+}
 // Dodanie kolejnych obrazków do galerii
 function appendImages(images) {
   const gallery = document.querySelector(".gallery");
