@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search App</title>
-    <link rel="stylesheet" href="/index.b07a87f3.css">
-    <script src="/index.975ef6c8.js" defer=""></script>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 
   </head>
   <body>
     <form class="search-form" id="search-form">
-      <input type="text" id="searchQuery" name="searchQuery" autocomplete="off" placeholder="Search images...">
+      <input
+        type="text"
+        id="searchQuery"
+name="searchQuery"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
       <button type="submit">Search</button>
     </form>
     <div class="gallery">
