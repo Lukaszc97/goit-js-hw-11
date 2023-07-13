@@ -1,7 +1,4 @@
-import axios from 'axios';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
-import * as notiflix from 'notiflix';
+
 const apiKey = "38011218-cb164cf0dde7e2df63faecdfa";
 
 let page = 1; 
@@ -173,6 +170,6 @@ function handleIntersection(entries, observer) {
 }
 // Pokazywanie powiadomienia
 function showNotification(message) {
-  notiflix.Notify.init({ position: "bottom-right" });
-  notiflix.Notify.success(message);
+  Notiflix.Notify.init({ position: "bottom-right" });
+  Notiflix.Notify.success(message);
 }
