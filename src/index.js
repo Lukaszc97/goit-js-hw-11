@@ -1,7 +1,7 @@
-import SimpleLightbox from "simplelightbox"
-import "simplelightbox/dist/simple-lightbox.min.css";
-import axios from "axios";
-import notiflix from "notiflix";
+import SimpleLightbox from "../node_modules/simplelightbox"
+import "../node_modules/simplelightbox/dist/simple-lightbox.min.css";
+import axios from "../node_modules/axios";
+import notiflix from "../node_modules/notiflix";
 const apiKey = "38011218-cb164cf0dde7e2df63faecdfa";
 
 let page = 1; 

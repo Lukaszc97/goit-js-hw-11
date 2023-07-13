@@ -504,12 +504,12 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"8lqZg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _simplelightbox = require("simplelightbox");
+var _simplelightbox = require("../node_modules/simplelightbox");
 var _simplelightboxDefault = parcelHelpers.interopDefault(_simplelightbox);
-var _simpleLightboxMinCss = require("simplelightbox/dist/simple-lightbox.min.css");
-var _axios = require("axios");
+var _simpleLightboxMinCss = require("../node_modules/simplelightbox/dist/simple-lightbox.min.css");
+var _axios = require("../node_modules/axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _notiflix = require("notiflix");
+var _notiflix = require("../node_modules/notiflix");
 var _notiflixDefault = parcelHelpers.interopDefault(_notiflix);
 const apiKey = "38011218-cb164cf0dde7e2df63faecdfa";
 let page = 1;
@@ -650,37 +650,7 @@ function showNotification(message) {
     (0, _notiflixDefault.default).Notify.success(message);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","simplelightbox":"9ydBq","simplelightbox/dist/simple-lightbox.min.css":"kaxSc","axios":"jo6P5","notiflix":"5z0Oc"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"9ydBq":[function(require,module,exports) {
+},{"../node_modules/simplelightbox":"9ydBq","../node_modules/axios":"jo6P5","../node_modules/notiflix":"5z0Oc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../node_modules/simplelightbox/dist/simple-lightbox.min.css":"kaxSc"}],"9ydBq":[function(require,module,exports) {
 /*!
 	By André Rinas, www.andrerinas.de
 	Documentation, www.simplelightbox.com
@@ -2189,7 +2159,7 @@ var _default = SimpleLightbox;
 exports["default"] = _default;
 global.SimpleLightbox = SimpleLightbox;
 
-},{}],"kaxSc":[function() {},{}],"jo6P5":[function(require,module,exports) {
+},{}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
@@ -2865,7 +2835,37 @@ function bind(fn, thisArg) {
 }
 exports.default = bind;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpqD8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"cpqD8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("./../utils.js");
@@ -7271,6 +7271,6 @@ var global = arguments[3];
     };
 });
 
-},{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
+},{}],"kaxSc":[function() {},{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
 
 //# sourceMappingURL=index.975ef6c8.js.map
