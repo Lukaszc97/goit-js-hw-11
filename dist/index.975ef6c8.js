@@ -504,8 +504,8 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"8lqZg":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _simplelightbox = require("../node_modules/simplelightbox");
-var _simplelightboxDefault = parcelHelpers.interopDefault(_simplelightbox);
+var _simpleLightboxMinJs = require("../node_modules/simplelightbox/dist/simple-lightbox.min.js");
+var _simpleLightboxMinJsDefault = parcelHelpers.interopDefault(_simpleLightboxMinJs);
 var _simpleLightboxMinCss = require("../node_modules/simplelightbox/dist/simple-lightbox.min.css");
 var _axios = require("../node_modules/axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
@@ -629,7 +629,7 @@ function createInfoItem(label, value) {
 }
 //SimpleLightbox po dodaniu nowych obrazków
 function initLightbox() {
-    const lightbox = new (0, _simplelightboxDefault.default)(".lightbox-target");
+    const lightbox = new (0, _simpleLightboxMinJsDefault.default)(".lightbox-target");
     lightbox.refresh();
 }
 function handleIntersection(entries, observer) {
@@ -650,1516 +650,37 @@ function showNotification(message) {
     (0, _notiflixDefault.default).Notify.success(message);
 }
 
-},{"../node_modules/simplelightbox":"9ydBq","../node_modules/axios":"jo6P5","../node_modules/notiflix":"5z0Oc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../node_modules/simplelightbox/dist/simple-lightbox.min.css":"kaxSc"}],"9ydBq":[function(require,module,exports) {
-/*!
-	By André Rinas, www.andrerinas.de
-	Documentation, www.simplelightbox.com
-	Available for use under the MIT License
-	Version 2.14.1
-*/ "use strict";
-var global = arguments[3];
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports["default"] = void 0;
-function _typeof(obj1) {
-    "@babel/helpers - typeof";
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-        return typeof obj;
-    } : function(obj) {
-        return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    }, _typeof(obj1);
-}
-function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
-    if (!it) {
-        if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-            if (it) o = it;
-            var i = 0;
-            var F = function F() {};
-            return {
-                s: F,
-                n: function n() {
-                    if (i >= o.length) return {
-                        done: true
-                    };
-                    return {
-                        done: false,
-                        value: o[i++]
-                    };
-                },
-                e: function e(_e) {
-                    throw _e;
-                },
-                f: F
-            };
-        }
-        throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-    }
-    var normalCompletion = true, didErr = false, err;
-    return {
-        s: function s() {
-            it = it.call(o);
-        },
-        n: function n() {
-            var step = it.next();
-            normalCompletion = step.done;
-            return step;
-        },
-        e: function e(_e2) {
-            didErr = true;
-            err = _e2;
-        },
-        f: function f() {
-            try {
-                if (!normalCompletion && it["return"] != null) it["return"]();
-            } finally{
-                if (didErr) throw err;
-            }
-        }
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../node_modules/simplelightbox/dist/simple-lightbox.min.css":"kaxSc","../node_modules/axios":"jo6P5","../node_modules/notiflix":"5z0Oc","../node_modules/simplelightbox/dist/simple-lightbox.min.js":"14vSH"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
     };
-}
-function _toConsumableArray(arr) {
-    return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
-}
-function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
-}
-function _iterableToArray(iter) {
-    if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
-}
-function _arrayWithoutHoles(arr) {
-    if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for(var i = 0, arr2 = new Array(len); i < len; i++)arr2[i] = arr[i];
-    return arr2;
-}
-function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) throw new TypeError("Cannot call a class as a function");
-}
-function _defineProperties(target, props) {
-    for(var i = 0; i < props.length; i++){
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-    }
-}
-function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    Object.defineProperty(Constructor, "prototype", {
-        writable: false
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
     });
-    return Constructor;
-}
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
         enumerable: true,
-        configurable: true,
-        writable: true
+        get: get
     });
-    else obj[key] = value;
-    return obj;
-}
-var SimpleLightbox = /*#__PURE__*/ function() {
-    function SimpleLightbox1(elements, options) {
-        var _this = this;
-        _classCallCheck(this, SimpleLightbox1);
-        _defineProperty(this, "defaultOptions", {
-            sourceAttr: "href",
-            overlay: true,
-            overlayOpacity: 0.7,
-            spinner: true,
-            nav: true,
-            navText: [
-                "&lsaquo;",
-                "&rsaquo;"
-            ],
-            captions: true,
-            captionDelay: 0,
-            captionSelector: "img",
-            captionType: "attr",
-            captionsData: "title",
-            captionPosition: "bottom",
-            captionClass: "",
-            close: true,
-            closeText: "&times;",
-            swipeClose: true,
-            showCounter: true,
-            fileExt: "png|jpg|jpeg|gif|webp",
-            animationSlide: true,
-            animationSpeed: 250,
-            preloading: true,
-            enableKeyboard: true,
-            loop: true,
-            rel: false,
-            docClose: true,
-            swipeTolerance: 50,
-            className: "simple-lightbox",
-            widthRatio: 0.8,
-            heightRatio: 0.9,
-            scaleImageToRatio: false,
-            disableRightClick: false,
-            disableScroll: true,
-            alertError: true,
-            alertErrorMessage: "Image not found, next image will be loaded",
-            additionalHtml: false,
-            history: true,
-            throttleInterval: 0,
-            doubleTapZoom: 2,
-            maxZoom: 10,
-            htmlClass: "has-lightbox",
-            rtl: false,
-            fixedClass: "sl-fixed",
-            fadeSpeed: 300,
-            uniqueImages: true,
-            focus: true,
-            scrollZoom: true,
-            scrollZoomFactor: 0.5,
-            download: false
-        });
-        _defineProperty(this, "transitionPrefix", void 0);
-        _defineProperty(this, "isPassiveEventsSupported", void 0);
-        _defineProperty(this, "transitionCapable", false);
-        _defineProperty(this, "isTouchDevice", "ontouchstart" in window);
-        _defineProperty(this, "isAppleDevice", /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform));
-        _defineProperty(this, "initialLocationHash", void 0);
-        _defineProperty(this, "pushStateSupport", "pushState" in history);
-        _defineProperty(this, "isOpen", false);
-        _defineProperty(this, "isAnimating", false);
-        _defineProperty(this, "isClosing", false);
-        _defineProperty(this, "isFadeIn", false);
-        _defineProperty(this, "urlChangedOnce", false);
-        _defineProperty(this, "hashReseted", false);
-        _defineProperty(this, "historyHasChanges", false);
-        _defineProperty(this, "historyUpdateTimeout", null);
-        _defineProperty(this, "currentImage", void 0);
-        _defineProperty(this, "eventNamespace", "simplelightbox");
-        _defineProperty(this, "domNodes", {});
-        _defineProperty(this, "loadedImages", []);
-        _defineProperty(this, "initialImageIndex", 0);
-        _defineProperty(this, "currentImageIndex", 0);
-        _defineProperty(this, "initialSelector", null);
-        _defineProperty(this, "globalScrollbarWidth", 0);
-        _defineProperty(this, "controlCoordinates", {
-            swipeDiff: 0,
-            swipeYDiff: 0,
-            swipeStart: 0,
-            swipeEnd: 0,
-            swipeYStart: 0,
-            swipeYEnd: 0,
-            mousedown: false,
-            imageLeft: 0,
-            zoomed: false,
-            containerHeight: 0,
-            containerWidth: 0,
-            containerOffsetX: 0,
-            containerOffsetY: 0,
-            imgHeight: 0,
-            imgWidth: 0,
-            capture: false,
-            initialOffsetX: 0,
-            initialOffsetY: 0,
-            initialPointerOffsetX: 0,
-            initialPointerOffsetY: 0,
-            initialPointerOffsetX2: 0,
-            initialPointerOffsetY2: 0,
-            initialScale: 1,
-            initialPinchDistance: 0,
-            pointerOffsetX: 0,
-            pointerOffsetY: 0,
-            pointerOffsetX2: 0,
-            pointerOffsetY2: 0,
-            targetOffsetX: 0,
-            targetOffsetY: 0,
-            targetScale: 0,
-            pinchOffsetX: 0,
-            pinchOffsetY: 0,
-            limitOffsetX: 0,
-            limitOffsetY: 0,
-            scaleDifference: 0,
-            targetPinchDistance: 0,
-            touchCount: 0,
-            doubleTapped: false,
-            touchmoveCount: 0
-        });
-        this.options = Object.assign(this.defaultOptions, options);
-        this.isPassiveEventsSupported = this.checkPassiveEventsSupport();
-        if (typeof elements === "string") {
-            this.initialSelector = elements;
-            this.elements = Array.from(document.querySelectorAll(elements));
-        } else this.elements = typeof elements.length !== "undefined" && elements.length > 0 ? Array.from(elements) : [
-            elements
-        ];
-        this.relatedElements = [];
-        this.transitionPrefix = this.calculateTransitionPrefix();
-        this.transitionCapable = this.transitionPrefix !== false;
-        this.initialLocationHash = this.hash;
-        // this should be handled by attribute selector IMHO! => 'a[rel=bla]'...
-        if (this.options.rel) this.elements = this.getRelated(this.options.rel);
-        if (this.options.uniqueImages) {
-            var imgArr = [];
-            this.elements = Array.from(this.elements).filter(function(element) {
-                var src = element.getAttribute(_this.options.sourceAttr);
-                if (imgArr.indexOf(src) === -1) {
-                    imgArr.push(src);
-                    return true;
-                }
-                return false;
-            });
-        }
-        this.createDomNodes();
-        if (this.options.close) this.domNodes.wrapper.appendChild(this.domNodes.closeButton);
-        if (this.options.nav) this.domNodes.wrapper.appendChild(this.domNodes.navigation);
-        if (this.options.spinner) this.domNodes.wrapper.appendChild(this.domNodes.spinner);
-        this.addEventListener(this.elements, "click." + this.eventNamespace, function(event) {
-            if (_this.isValidLink(event.currentTarget)) {
-                event.preventDefault();
-                if (_this.isAnimating) return false;
-                _this.initialImageIndex = _this.elements.indexOf(event.currentTarget);
-                _this.openImage(event.currentTarget);
-            }
-        });
-        // close addEventListener click addEventListener doc
-        if (this.options.docClose) this.addEventListener(this.domNodes.wrapper, [
-            "click." + this.eventNamespace,
-            "touchstart." + this.eventNamespace
-        ], function(event) {
-            if (_this.isOpen && event.target === event.currentTarget) _this.close();
-        });
-        // disable rightclick
-        if (this.options.disableRightClick) this.addEventListener(document.body, "contextmenu." + this.eventNamespace, function(event) {
-            if (event.target.parentElement.classList.contains("sl-image")) event.preventDefault();
-        });
-        // keyboard-control
-        if (this.options.enableKeyboard) this.addEventListener(document.body, "keyup." + this.eventNamespace, this.throttle(function(event) {
-            _this.controlCoordinates.swipeDiff = 0;
-            // keyboard control only if lightbox is open
-            if (_this.isAnimating && event.key === "Escape") {
-                _this.currentImage.setAttribute("src", "");
-                _this.isAnimating = false;
-                _this.close();
-                return;
-            }
-            if (_this.isOpen) {
-                event.preventDefault();
-                if (event.key === "Escape") _this.close();
-                if (!_this.isAnimating && [
-                    "ArrowLeft",
-                    "ArrowRight"
-                ].indexOf(event.key) > -1) _this.loadImage(event.key === "ArrowRight" ? 1 : -1);
-            }
-        }, this.options.throttleInterval));
-        this.addEvents();
-    }
-    _createClass(SimpleLightbox1, [
-        {
-            key: "checkPassiveEventsSupport",
-            value: function checkPassiveEventsSupport() {
-                // https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md#feature-detection
-                // Test via a getter in the options object to see if the passive property is accessed
-                var supportsPassive = false;
-                try {
-                    var opts = Object.defineProperty({}, "passive", {
-                        get: function get() {
-                            supportsPassive = true;
-                        }
-                    });
-                    window.addEventListener("testPassive", null, opts);
-                    window.removeEventListener("testPassive", null, opts);
-                } catch (e) {}
-                return supportsPassive;
-            }
-        },
-        {
-            key: "getCaptionElement",
-            value: function getCaptionElement(elem) {
-                // look at sibling selector
-                if (this.options.captionSelector.startsWith("+")) {
-                    var selector = this.options.captionSelector.replace(/^\+/, "").trimStart();
-                    var sibling = elem.nextElementSibling;
-                    if (sibling.matches(selector)) return sibling;
-                    return false;
-                } else if (this.options.captionSelector.startsWith(">")) {
-                    var _selector = this.options.captionSelector.replace(/^>/, "").trimStart();
-                    return elem.querySelector(_selector);
-                } else return elem.querySelector(this.options.captionSelector);
-            }
-        },
-        {
-            key: "generateQuerySelector",
-            value: function generateQuerySelector(elem) {
-                var tagName = elem.tagName, id = elem.id, className = elem.className, parentNode = elem.parentNode;
-                if (tagName === "HTML") return "HTML";
-                var str = tagName;
-                str += id !== "" ? "#".concat(id) : "";
-                if (className) {
-                    var classes = className.trim().split(/\s/);
-                    for(var i = 0; i < classes.length; i++)str += ".".concat(classes[i]);
-                }
-                var childIndex = 1;
-                for(var e = elem; e.previousElementSibling; e = e.previousElementSibling)childIndex += 1;
-                str += ":nth-child(".concat(childIndex, ")");
-                return "".concat(this.generateQuerySelector(parentNode), " > ").concat(str);
-            }
-        },
-        {
-            key: "createDomNodes",
-            value: function createDomNodes() {
-                this.domNodes.overlay = document.createElement("div");
-                this.domNodes.overlay.classList.add("sl-overlay");
-                this.domNodes.overlay.dataset.opacityTarget = this.options.overlayOpacity;
-                this.domNodes.closeButton = document.createElement("button");
-                this.domNodes.closeButton.classList.add("sl-close");
-                this.domNodes.closeButton.innerHTML = this.options.closeText;
-                this.domNodes.spinner = document.createElement("div");
-                this.domNodes.spinner.classList.add("sl-spinner");
-                this.domNodes.spinner.innerHTML = "<div></div>";
-                this.domNodes.navigation = document.createElement("div");
-                this.domNodes.navigation.classList.add("sl-navigation");
-                this.domNodes.navigation.innerHTML = '<button class="sl-prev">'.concat(this.options.navText[0], '</button><button class="sl-next">').concat(this.options.navText[1], "</button>");
-                this.domNodes.counter = document.createElement("div");
-                this.domNodes.counter.classList.add("sl-counter");
-                this.domNodes.counter.innerHTML = '<span class="sl-current"></span>/<span class="sl-total"></span>';
-                this.domNodes.download = document.createElement("div");
-                this.domNodes.download.classList.add("sl-download");
-                this.domNodes.downloadLink = document.createElement("a");
-                this.domNodes.downloadLink.setAttribute("download", "");
-                this.domNodes.downloadLink.textContent = this.options.download;
-                this.domNodes.download.appendChild(this.domNodes.downloadLink);
-                this.domNodes.caption = document.createElement("div");
-                this.domNodes.caption.classList.add("sl-caption", "pos-" + this.options.captionPosition);
-                if (this.options.captionClass) {
-                    var _this$domNodes$captio;
-                    var captionClasses = this.options.captionClass.split(/[\s,]+/);
-                    (_this$domNodes$captio = this.domNodes.caption.classList).add.apply(_this$domNodes$captio, _toConsumableArray(captionClasses));
-                }
-                this.domNodes.image = document.createElement("div");
-                this.domNodes.image.classList.add("sl-image");
-                this.domNodes.wrapper = document.createElement("div");
-                this.domNodes.wrapper.classList.add("sl-wrapper");
-                this.domNodes.wrapper.setAttribute("tabindex", -1);
-                this.domNodes.wrapper.setAttribute("role", "dialog");
-                this.domNodes.wrapper.setAttribute("aria-hidden", false);
-                if (this.options.className) this.domNodes.wrapper.classList.add(this.options.className);
-                if (this.options.rtl) this.domNodes.wrapper.classList.add("sl-dir-rtl");
-            }
-        },
-        {
-            key: "throttle",
-            value: function throttle(func, limit) {
-                var inThrottle;
-                return function() {
-                    if (!inThrottle) {
-                        func.apply(this, arguments);
-                        inThrottle = true;
-                        setTimeout(function() {
-                            return inThrottle = false;
-                        }, limit);
-                    }
-                };
-            }
-        },
-        {
-            key: "isValidLink",
-            value: function isValidLink(element) {
-                return !this.options.fileExt || element.getAttribute(this.options.sourceAttr) && new RegExp("(" + this.options.fileExt + ")($|\\?.*$)", "i").test(element.getAttribute(this.options.sourceAttr));
-            }
-        },
-        {
-            key: "calculateTransitionPrefix",
-            value: function calculateTransitionPrefix() {
-                var s = (document.body || document.documentElement).style;
-                return "transition" in s ? "" : "WebkitTransition" in s ? "-webkit-" : "MozTransition" in s ? "-moz-" : "OTransition" in s ? "-o" : false;
-            }
-        },
-        {
-            key: "getScrollbarWidth",
-            value: function getScrollbarWidth() {
-                var scrollbarWidth = 0;
-                var scrollDiv = document.createElement("div");
-                scrollDiv.classList.add("sl-scrollbar-measure");
-                document.body.appendChild(scrollDiv);
-                scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-                document.body.removeChild(scrollDiv);
-                return scrollbarWidth;
-            }
-        },
-        {
-            key: "toggleScrollbar",
-            value: function toggleScrollbar(type) {
-                var scrollbarWidth = 0;
-                var fixedElements = [].slice.call(document.querySelectorAll("." + this.options.fixedClass));
-                if (type === "hide") {
-                    var fullWindowWidth = window.innerWidth;
-                    if (!fullWindowWidth) {
-                        var documentElementRect = document.documentElement.getBoundingClientRect();
-                        fullWindowWidth = documentElementRect.right - Math.abs(documentElementRect.left);
-                    }
-                    if (document.body.clientWidth < fullWindowWidth || this.isAppleDevice) {
-                        var paddingRight = parseInt(window.getComputedStyle(document.body).paddingRight || 0, 10);
-                        scrollbarWidth = this.getScrollbarWidth();
-                        document.body.dataset.originalPaddingRight = paddingRight;
-                        if (scrollbarWidth > 0 || scrollbarWidth == 0 && this.isAppleDevice) {
-                            document.body.classList.add("hidden-scroll");
-                            document.body.style.paddingRight = paddingRight + scrollbarWidth + "px";
-                            fixedElements.forEach(function(element) {
-                                var actualPadding = element.style.paddingRight;
-                                var calculatedPadding = window.getComputedStyle(element)["padding-right"];
-                                element.dataset.originalPaddingRight = actualPadding;
-                                element.style.paddingRight = "".concat(parseFloat(calculatedPadding) + scrollbarWidth, "px");
-                            });
-                        }
-                    }
-                } else {
-                    document.body.classList.remove("hidden-scroll");
-                    document.body.style.paddingRight = document.body.dataset.originalPaddingRight + "px";
-                    fixedElements.forEach(function(element) {
-                        var padding = element.dataset.originalPaddingRight;
-                        if (typeof padding !== "undefined") element.style.paddingRight = padding;
-                    });
-                }
-                return scrollbarWidth;
-            }
-        },
-        {
-            key: "close",
-            value: function close() {
-                var _this2 = this;
-                if (!this.isOpen || this.isAnimating || this.isClosing) return false;
-                this.isClosing = true;
-                var element = this.relatedElements[this.currentImageIndex];
-                element.dispatchEvent(new Event("close.simplelightbox"));
-                if (this.options.history) {
-                    this.historyHasChanges = false;
-                    if (!this.hashReseted) this.resetHash();
-                }
-                this.removeEventListener(document, "focusin." + this.eventNamespace);
-                this.fadeOut(this.domNodes.overlay, this.options.fadeSpeed);
-                this.fadeOut(document.querySelectorAll(".sl-image img,  .sl-close, .sl-navigation, .sl-image .sl-caption, .sl-counter"), this.options.fadeSpeed, function() {
-                    if (_this2.options.disableScroll) _this2.toggleScrollbar("show");
-                    if (_this2.options.htmlClass && _this2.options.htmlClass !== "") document.querySelector("html").classList.remove(_this2.options.htmlClass);
-                    document.body.removeChild(_this2.domNodes.wrapper);
-                    if (_this2.options.overlay) document.body.removeChild(_this2.domNodes.overlay);
-                    _this2.domNodes.additionalHtml = null;
-                    _this2.domNodes.download = null;
-                    element.dispatchEvent(new Event("closed.simplelightbox"));
-                    _this2.isClosing = false;
-                });
-                this.currentImage = null;
-                this.isOpen = false;
-                this.isAnimating = false;
-                // reset touchcontrol coordinates
-                for(var key in this.controlCoordinates)this.controlCoordinates[key] = 0;
-                this.controlCoordinates.mousedown = false;
-                this.controlCoordinates.zoomed = false;
-                this.controlCoordinates.capture = false;
-                this.controlCoordinates.initialScale = this.minMax(1, 1, this.options.maxZoom);
-                this.controlCoordinates.doubleTapped = false;
-            }
-        },
-        {
-            key: "hash",
-            get: function get() {
-                return window.location.hash.substring(1);
-            }
-        },
-        {
-            key: "preload",
-            value: function preload() {
-                var _this3 = this;
-                var index = this.currentImageIndex, length = this.relatedElements.length, next = index + 1 < 0 ? length - 1 : index + 1 >= length - 1 ? 0 : index + 1, prev = index - 1 < 0 ? length - 1 : index - 1 >= length - 1 ? 0 : index - 1, nextImage = new Image(), prevImage = new Image();
-                nextImage.addEventListener("load", function(event) {
-                    var src = event.target.getAttribute("src");
-                    if (_this3.loadedImages.indexOf(src) === -1) //is this condition even required... setting multiple times will not change usage...
-                    _this3.loadedImages.push(src);
-                    _this3.relatedElements[index].dispatchEvent(new Event("nextImageLoaded." + _this3.eventNamespace));
-                });
-                nextImage.setAttribute("src", this.relatedElements[next].getAttribute(this.options.sourceAttr));
-                prevImage.addEventListener("load", function(event) {
-                    var src = event.target.getAttribute("src");
-                    if (_this3.loadedImages.indexOf(src) === -1) _this3.loadedImages.push(src);
-                    _this3.relatedElements[index].dispatchEvent(new Event("prevImageLoaded." + _this3.eventNamespace));
-                });
-                prevImage.setAttribute("src", this.relatedElements[prev].getAttribute(this.options.sourceAttr));
-            }
-        },
-        {
-            key: "loadImage",
-            value: function loadImage(direction) {
-                var _this4 = this;
-                var slideDirection = direction;
-                if (this.options.rtl) direction = -direction;
-                this.relatedElements[this.currentImageIndex].dispatchEvent(new Event("change." + this.eventNamespace));
-                this.relatedElements[this.currentImageIndex].dispatchEvent(new Event((direction === 1 ? "next" : "prev") + "." + this.eventNamespace));
-                var newIndex = this.currentImageIndex + direction;
-                if (this.isAnimating || (newIndex < 0 || newIndex >= this.relatedElements.length) && this.options.loop === false) return false;
-                this.currentImageIndex = newIndex < 0 ? this.relatedElements.length - 1 : newIndex > this.relatedElements.length - 1 ? 0 : newIndex;
-                this.domNodes.counter.querySelector(".sl-current").innerHTML = this.currentImageIndex + 1;
-                if (this.options.animationSlide) this.slide(this.options.animationSpeed / 1000, -100 * slideDirection - this.controlCoordinates.swipeDiff + "px");
-                this.fadeOut(this.domNodes.image, this.options.fadeSpeed, function() {
-                    _this4.isAnimating = true;
-                    if (!_this4.isClosing) setTimeout(function() {
-                        var element = _this4.relatedElements[_this4.currentImageIndex];
-                        if (!_this4.currentImage) return;
-                        _this4.currentImage.setAttribute("src", element.getAttribute(_this4.options.sourceAttr));
-                        if (_this4.loadedImages.indexOf(element.getAttribute(_this4.options.sourceAttr)) === -1) _this4.show(_this4.domNodes.spinner);
-                        if (_this4.domNodes.image.contains(_this4.domNodes.caption)) _this4.domNodes.image.removeChild(_this4.domNodes.caption);
-                        _this4.adjustImage(slideDirection);
-                        if (_this4.options.preloading) _this4.preload();
-                    }, 100);
-                    else _this4.isAnimating = false;
-                });
-            }
-        },
-        {
-            key: "adjustImage",
-            value: function adjustImage(direction) {
-                var _this5 = this;
-                if (!this.currentImage) return false;
-                var tmpImage = new Image(), windowWidth = window.innerWidth * this.options.widthRatio, windowHeight = window.innerHeight * this.options.heightRatio;
-                tmpImage.setAttribute("src", this.currentImage.getAttribute("src"));
-                this.currentImage.dataset.scale = 1;
-                this.currentImage.dataset.translateX = 0;
-                this.currentImage.dataset.translateY = 0;
-                this.zoomPanElement(0, 0, 1);
-                tmpImage.addEventListener("error", function(event) {
-                    _this5.relatedElements[_this5.currentImageIndex].dispatchEvent(new Event("error." + _this5.eventNamespace));
-                    _this5.isAnimating = false;
-                    _this5.isOpen = true;
-                    _this5.domNodes.spinner.style.display = "none";
-                    var dirIsDefined = direction === 1 || direction === -1;
-                    if (_this5.initialImageIndex === _this5.currentImageIndex && dirIsDefined) return _this5.close();
-                    if (_this5.options.alertError) alert(_this5.options.alertErrorMessage);
-                    _this5.loadImage(dirIsDefined ? direction : 1);
-                });
-                tmpImage.addEventListener("load", function(event) {
-                    if (typeof direction !== "undefined") {
-                        _this5.relatedElements[_this5.currentImageIndex].dispatchEvent(new Event("changed." + _this5.eventNamespace));
-                        _this5.relatedElements[_this5.currentImageIndex].dispatchEvent(new Event((direction === 1 ? "nextDone" : "prevDone") + "." + _this5.eventNamespace));
-                    }
-                    // history
-                    if (_this5.options.history) _this5.updateURL();
-                    if (_this5.loadedImages.indexOf(_this5.currentImage.getAttribute("src")) === -1) _this5.loadedImages.push(_this5.currentImage.getAttribute("src"));
-                    var imageWidth = event.target.width, imageHeight = event.target.height;
-                    if (_this5.options.scaleImageToRatio || imageWidth > windowWidth || imageHeight > windowHeight) {
-                        var ratio = imageWidth / imageHeight > windowWidth / windowHeight ? imageWidth / windowWidth : imageHeight / windowHeight;
-                        imageWidth /= ratio;
-                        imageHeight /= ratio;
-                    }
-                    _this5.domNodes.image.style.top = (window.innerHeight - imageHeight) / 2 + "px";
-                    _this5.domNodes.image.style.left = (window.innerWidth - imageWidth - _this5.globalScrollbarWidth) / 2 + "px";
-                    _this5.domNodes.image.style.width = imageWidth + "px";
-                    _this5.domNodes.image.style.height = imageHeight + "px";
-                    _this5.domNodes.spinner.style.display = "none";
-                    if (_this5.options.focus) _this5.forceFocus();
-                    _this5.fadeIn(_this5.currentImage, _this5.options.fadeSpeed, function() {
-                        if (_this5.options.focus) _this5.domNodes.wrapper.focus();
-                    });
-                    _this5.isOpen = true;
-                    var captionContainer, captionText;
-                    if (typeof _this5.options.captionSelector === "string") captionContainer = _this5.options.captionSelector === "self" ? _this5.relatedElements[_this5.currentImageIndex] : _this5.getCaptionElement(_this5.relatedElements[_this5.currentImageIndex]);
-                    else if (typeof _this5.options.captionSelector === "function") captionContainer = _this5.options.captionSelector(_this5.relatedElements[_this5.currentImageIndex]);
-                    if (_this5.options.captions && captionContainer) {
-                        if (_this5.options.captionType === "data") captionText = captionContainer.dataset[_this5.options.captionsData];
-                        else if (_this5.options.captionType === "text") captionText = captionContainer.innerHTML;
-                        else captionText = captionContainer.getAttribute(_this5.options.captionsData);
-                    }
-                    if (!_this5.options.loop) {
-                        if (_this5.currentImageIndex === 0) _this5.hide(_this5.domNodes.navigation.querySelector(".sl-prev"));
-                        if (_this5.currentImageIndex >= _this5.relatedElements.length - 1) _this5.hide(_this5.domNodes.navigation.querySelector(".sl-next"));
-                        if (_this5.currentImageIndex > 0) _this5.show(_this5.domNodes.navigation.querySelector(".sl-prev"));
-                        if (_this5.currentImageIndex < _this5.relatedElements.length - 1) _this5.show(_this5.domNodes.navigation.querySelector(".sl-next"));
-                    } else if (_this5.relatedElements.length === 1) _this5.hide(_this5.domNodes.navigation.querySelectorAll(".sl-prev, .sl-next"));
-                    else _this5.show(_this5.domNodes.navigation.querySelectorAll(".sl-prev, .sl-next"));
-                    if (direction === 1 || direction === -1) {
-                        if (_this5.options.animationSlide) {
-                            _this5.slide(0, 100 * direction + "px");
-                            setTimeout(function() {
-                                _this5.slide(_this5.options.animationSpeed / 1000, "0px");
-                            }, 50);
-                        }
-                        _this5.fadeIn(_this5.domNodes.image, _this5.options.fadeSpeed, function() {
-                            _this5.isAnimating = false;
-                            _this5.setCaption(captionText, imageWidth);
-                        });
-                    } else {
-                        _this5.isAnimating = false;
-                        _this5.setCaption(captionText, imageWidth);
-                    }
-                    if (_this5.options.additionalHtml && !_this5.domNodes.additionalHtml) {
-                        _this5.domNodes.additionalHtml = document.createElement("div");
-                        _this5.domNodes.additionalHtml.classList.add("sl-additional-html");
-                        _this5.domNodes.additionalHtml.innerHTML = _this5.options.additionalHtml;
-                        _this5.domNodes.image.appendChild(_this5.domNodes.additionalHtml);
-                    }
-                    if (_this5.options.download) _this5.domNodes.downloadLink.setAttribute("href", _this5.currentImage.getAttribute("src"));
-                });
-            }
-        },
-        {
-            key: "zoomPanElement",
-            value: function zoomPanElement(targetOffsetX, targetOffsetY, targetScale) {
-                this.currentImage.style[this.transitionPrefix + "transform"] = "translate(" + targetOffsetX + "," + targetOffsetY + ") scale(" + targetScale + ")";
-            }
-        },
-        {
-            key: "minMax",
-            value: function minMax(value, min, max) {
-                return value < min ? min : value > max ? max : value;
-            }
-        },
-        {
-            key: "setZoomData",
-            value: function setZoomData(initialScale, targetOffsetX, targetOffsetY) {
-                this.currentImage.dataset.scale = initialScale;
-                this.currentImage.dataset.translateX = targetOffsetX;
-                this.currentImage.dataset.translateY = targetOffsetY;
-            }
-        },
-        {
-            key: "hashchangeHandler",
-            value: function hashchangeHandler() {
-                if (this.isOpen && this.hash === this.initialLocationHash) {
-                    this.hashReseted = true;
-                    this.close();
-                }
-            }
-        },
-        {
-            key: "addEvents",
-            value: function addEvents() {
-                var _this6 = this;
-                // resize/responsive
-                this.addEventListener(window, "resize." + this.eventNamespace, function(event) {
-                    //this.adjustImage.bind(this)
-                    if (_this6.isOpen) _this6.adjustImage();
-                });
-                this.addEventListener(this.domNodes.closeButton, [
-                    "click." + this.eventNamespace,
-                    "touchstart." + this.eventNamespace
-                ], this.close.bind(this));
-                if (this.options.history) setTimeout(function() {
-                    _this6.addEventListener(window, "hashchange." + _this6.eventNamespace, function(event) {
-                        if (_this6.isOpen) _this6.hashchangeHandler();
-                    });
-                }, 40);
-                this.addEventListener(this.domNodes.navigation.getElementsByTagName("button"), "click." + this.eventNamespace, function(event) {
-                    if (!event.currentTarget.tagName.match(/button/i)) return true;
-                    event.preventDefault();
-                    _this6.controlCoordinates.swipeDiff = 0;
-                    _this6.loadImage(event.currentTarget.classList.contains("sl-next") ? 1 : -1);
-                });
-                if (this.options.scrollZoom) {
-                    var scale = 1;
-                    this.addEventListener(this.domNodes.image, [
-                        "mousewheel",
-                        "DOMMouseScroll"
-                    ], function(event) {
-                        if (_this6.controlCoordinates.mousedown || _this6.isAnimating || _this6.isClosing || !_this6.isOpen) return true;
-                        if (_this6.controlCoordinates.containerHeight == 0) {
-                            _this6.controlCoordinates.containerHeight = _this6.getDimensions(_this6.domNodes.image).height;
-                            _this6.controlCoordinates.containerWidth = _this6.getDimensions(_this6.domNodes.image).width;
-                            _this6.controlCoordinates.imgHeight = _this6.getDimensions(_this6.currentImage).height;
-                            _this6.controlCoordinates.imgWidth = _this6.getDimensions(_this6.currentImage).width;
-                            _this6.controlCoordinates.containerOffsetX = _this6.domNodes.image.offsetLeft;
-                            _this6.controlCoordinates.containerOffsetY = _this6.domNodes.image.offsetTop;
-                            _this6.controlCoordinates.initialOffsetX = parseFloat(_this6.currentImage.dataset.translateX);
-                            _this6.controlCoordinates.initialOffsetY = parseFloat(_this6.currentImage.dataset.translateY);
-                        }
-                        // event.preventDefault();
-                        var delta = event.delta || event.wheelDelta;
-                        if (delta === undefined) //we are on firefox
-                        delta = event.detail;
-                        delta = Math.max(-1, Math.min(1, delta)); // cap the delta to [-1,1] for cross browser consistency
-                        // apply zoom
-                        scale += delta * _this6.options.scrollZoomFactor * scale;
-                        scale = Math.max(1, Math.min(_this6.options.maxZoom, scale));
-                        _this6.controlCoordinates.targetScale = scale;
-                        var scrollTopPos = document.documentElement.scrollTop || document.body.scrollTop;
-                        _this6.controlCoordinates.pinchOffsetX = event.pageX;
-                        _this6.controlCoordinates.pinchOffsetY = event.pageY - scrollTopPos || 0; // need to substract the scroll position
-                        _this6.controlCoordinates.limitOffsetX = (_this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerWidth) / 2;
-                        _this6.controlCoordinates.limitOffsetY = (_this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerHeight) / 2;
-                        _this6.controlCoordinates.scaleDifference = _this6.controlCoordinates.targetScale - _this6.controlCoordinates.initialScale;
-                        _this6.controlCoordinates.targetOffsetX = _this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerWidth ? 0 : _this6.minMax(_this6.controlCoordinates.initialOffsetX - (_this6.controlCoordinates.pinchOffsetX - _this6.controlCoordinates.containerOffsetX - _this6.controlCoordinates.containerWidth / 2 - _this6.controlCoordinates.initialOffsetX) / (_this6.controlCoordinates.targetScale - _this6.controlCoordinates.scaleDifference) * _this6.controlCoordinates.scaleDifference, _this6.controlCoordinates.limitOffsetX * -1, _this6.controlCoordinates.limitOffsetX);
-                        _this6.controlCoordinates.targetOffsetY = _this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerHeight ? 0 : _this6.minMax(_this6.controlCoordinates.initialOffsetY - (_this6.controlCoordinates.pinchOffsetY - _this6.controlCoordinates.containerOffsetY - _this6.controlCoordinates.containerHeight / 2 - _this6.controlCoordinates.initialOffsetY) / (_this6.controlCoordinates.targetScale - _this6.controlCoordinates.scaleDifference) * _this6.controlCoordinates.scaleDifference, _this6.controlCoordinates.limitOffsetY * -1, _this6.controlCoordinates.limitOffsetY);
-                        _this6.zoomPanElement(_this6.controlCoordinates.targetOffsetX + "px", _this6.controlCoordinates.targetOffsetY + "px", _this6.controlCoordinates.targetScale);
-                        if (_this6.controlCoordinates.targetScale > 1) {
-                            _this6.controlCoordinates.zoomed = true;
-                            if ((!_this6.domNodes.caption.style.opacity || _this6.domNodes.caption.style.opacity > 0) && _this6.domNodes.caption.style.display !== "none") _this6.fadeOut(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                        } else {
-                            if (_this6.controlCoordinates.initialScale === 1) {
-                                _this6.controlCoordinates.zoomed = false;
-                                if (_this6.domNodes.caption.style.display === "none") _this6.fadeIn(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                            }
-                            _this6.controlCoordinates.initialPinchDistance = null;
-                            _this6.controlCoordinates.capture = false;
-                        }
-                        _this6.controlCoordinates.initialPinchDistance = _this6.controlCoordinates.targetPinchDistance;
-                        _this6.controlCoordinates.initialScale = _this6.controlCoordinates.targetScale;
-                        _this6.controlCoordinates.initialOffsetX = _this6.controlCoordinates.targetOffsetX;
-                        _this6.controlCoordinates.initialOffsetY = _this6.controlCoordinates.targetOffsetY;
-                        _this6.setZoomData(_this6.controlCoordinates.targetScale, _this6.controlCoordinates.targetOffsetX, _this6.controlCoordinates.targetOffsetY);
-                        _this6.zoomPanElement(_this6.controlCoordinates.targetOffsetX + "px", _this6.controlCoordinates.targetOffsetY + "px", _this6.controlCoordinates.targetScale);
-                    });
-                }
-                this.addEventListener(this.domNodes.image, [
-                    "touchstart." + this.eventNamespace,
-                    "mousedown." + this.eventNamespace
-                ], function(event) {
-                    if (event.target.tagName === "A" && event.type === "touchstart") return true;
-                    if (event.type === "mousedown") {
-                        event.preventDefault();
-                        _this6.controlCoordinates.initialPointerOffsetX = event.clientX;
-                        _this6.controlCoordinates.initialPointerOffsetY = event.clientY;
-                        _this6.controlCoordinates.containerHeight = _this6.getDimensions(_this6.domNodes.image).height;
-                        _this6.controlCoordinates.containerWidth = _this6.getDimensions(_this6.domNodes.image).width;
-                        _this6.controlCoordinates.imgHeight = _this6.getDimensions(_this6.currentImage).height;
-                        _this6.controlCoordinates.imgWidth = _this6.getDimensions(_this6.currentImage).width;
-                        _this6.controlCoordinates.containerOffsetX = _this6.domNodes.image.offsetLeft;
-                        _this6.controlCoordinates.containerOffsetY = _this6.domNodes.image.offsetTop;
-                        _this6.controlCoordinates.initialOffsetX = parseFloat(_this6.currentImage.dataset.translateX);
-                        _this6.controlCoordinates.initialOffsetY = parseFloat(_this6.currentImage.dataset.translateY);
-                        _this6.controlCoordinates.capture = true;
-                    } else {
-                        _this6.controlCoordinates.touchCount = event.touches.length;
-                        _this6.controlCoordinates.initialPointerOffsetX = event.touches[0].clientX;
-                        _this6.controlCoordinates.initialPointerOffsetY = event.touches[0].clientY;
-                        _this6.controlCoordinates.containerHeight = _this6.getDimensions(_this6.domNodes.image).height;
-                        _this6.controlCoordinates.containerWidth = _this6.getDimensions(_this6.domNodes.image).width;
-                        _this6.controlCoordinates.imgHeight = _this6.getDimensions(_this6.currentImage).height;
-                        _this6.controlCoordinates.imgWidth = _this6.getDimensions(_this6.currentImage).width;
-                        _this6.controlCoordinates.containerOffsetX = _this6.domNodes.image.offsetLeft;
-                        _this6.controlCoordinates.containerOffsetY = _this6.domNodes.image.offsetTop;
-                        if (_this6.controlCoordinates.touchCount === 1) /* Single touch */ {
-                            if (!_this6.controlCoordinates.doubleTapped) {
-                                _this6.controlCoordinates.doubleTapped = true;
-                                setTimeout(function() {
-                                    _this6.controlCoordinates.doubleTapped = false;
-                                }, 300);
-                            } else {
-                                _this6.currentImage.classList.add("sl-transition");
-                                if (!_this6.controlCoordinates.zoomed) {
-                                    _this6.controlCoordinates.initialScale = _this6.options.doubleTapZoom;
-                                    _this6.setZoomData(_this6.controlCoordinates.initialScale, 0, 0);
-                                    _this6.zoomPanElement("0px", "0px", _this6.controlCoordinates.initialScale);
-                                    if ((!_this6.domNodes.caption.style.opacity || _this6.domNodes.caption.style.opacity > 0) && _this6.domNodes.caption.style.display !== "none") _this6.fadeOut(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                                    _this6.controlCoordinates.zoomed = true;
-                                } else {
-                                    _this6.controlCoordinates.initialScale = 1;
-                                    _this6.setZoomData(_this6.controlCoordinates.initialScale, 0, 0);
-                                    _this6.zoomPanElement("0px", "0px", _this6.controlCoordinates.initialScale);
-                                    _this6.controlCoordinates.zoomed = false;
-                                }
-                                setTimeout(function() {
-                                    if (_this6.currentImage) _this6.currentImage.classList.remove("sl-transition");
-                                }, 200);
-                                return false;
-                            }
-                            _this6.controlCoordinates.initialOffsetX = parseFloat(_this6.currentImage.dataset.translateX);
-                            _this6.controlCoordinates.initialOffsetY = parseFloat(_this6.currentImage.dataset.translateY);
-                        } else if (_this6.controlCoordinates.touchCount === 2) /* Pinch */ {
-                            _this6.controlCoordinates.initialPointerOffsetX2 = event.touches[1].clientX;
-                            _this6.controlCoordinates.initialPointerOffsetY2 = event.touches[1].clientY;
-                            _this6.controlCoordinates.initialOffsetX = parseFloat(_this6.currentImage.dataset.translateX);
-                            _this6.controlCoordinates.initialOffsetY = parseFloat(_this6.currentImage.dataset.translateY);
-                            _this6.controlCoordinates.pinchOffsetX = (_this6.controlCoordinates.initialPointerOffsetX + _this6.controlCoordinates.initialPointerOffsetX2) / 2;
-                            _this6.controlCoordinates.pinchOffsetY = (_this6.controlCoordinates.initialPointerOffsetY + _this6.controlCoordinates.initialPointerOffsetY2) / 2;
-                            _this6.controlCoordinates.initialPinchDistance = Math.sqrt((_this6.controlCoordinates.initialPointerOffsetX - _this6.controlCoordinates.initialPointerOffsetX2) * (_this6.controlCoordinates.initialPointerOffsetX - _this6.controlCoordinates.initialPointerOffsetX2) + (_this6.controlCoordinates.initialPointerOffsetY - _this6.controlCoordinates.initialPointerOffsetY2) * (_this6.controlCoordinates.initialPointerOffsetY - _this6.controlCoordinates.initialPointerOffsetY2));
-                        }
-                        _this6.controlCoordinates.capture = true;
-                    }
-                    if (_this6.controlCoordinates.mousedown) return true;
-                    if (_this6.transitionCapable) _this6.controlCoordinates.imageLeft = parseInt(_this6.domNodes.image.style.left, 10);
-                    _this6.controlCoordinates.mousedown = true;
-                    _this6.controlCoordinates.swipeDiff = 0;
-                    _this6.controlCoordinates.swipeYDiff = 0;
-                    _this6.controlCoordinates.swipeStart = event.pageX || event.touches[0].pageX;
-                    _this6.controlCoordinates.swipeYStart = event.pageY || event.touches[0].pageY;
-                    return false;
-                });
-                this.addEventListener(this.domNodes.image, [
-                    "touchmove." + this.eventNamespace,
-                    "mousemove." + this.eventNamespace,
-                    "MSPointerMove"
-                ], function(event) {
-                    if (!_this6.controlCoordinates.mousedown) return true;
-                    if (event.type === "touchmove") {
-                        if (_this6.controlCoordinates.capture === false) return false;
-                        _this6.controlCoordinates.pointerOffsetX = event.touches[0].clientX;
-                        _this6.controlCoordinates.pointerOffsetY = event.touches[0].clientY;
-                        _this6.controlCoordinates.touchCount = event.touches.length;
-                        _this6.controlCoordinates.touchmoveCount++;
-                        if (_this6.controlCoordinates.touchCount > 1) /* Pinch */ {
-                            _this6.controlCoordinates.pointerOffsetX2 = event.touches[1].clientX;
-                            _this6.controlCoordinates.pointerOffsetY2 = event.touches[1].clientY;
-                            _this6.controlCoordinates.targetPinchDistance = Math.sqrt((_this6.controlCoordinates.pointerOffsetX - _this6.controlCoordinates.pointerOffsetX2) * (_this6.controlCoordinates.pointerOffsetX - _this6.controlCoordinates.pointerOffsetX2) + (_this6.controlCoordinates.pointerOffsetY - _this6.controlCoordinates.pointerOffsetY2) * (_this6.controlCoordinates.pointerOffsetY - _this6.controlCoordinates.pointerOffsetY2));
-                            if (_this6.controlCoordinates.initialPinchDistance === null) _this6.controlCoordinates.initialPinchDistance = _this6.controlCoordinates.targetPinchDistance;
-                            if (Math.abs(_this6.controlCoordinates.initialPinchDistance - _this6.controlCoordinates.targetPinchDistance) >= 1) {
-                                /* Initialize helpers */ _this6.controlCoordinates.targetScale = _this6.minMax(_this6.controlCoordinates.targetPinchDistance / _this6.controlCoordinates.initialPinchDistance * _this6.controlCoordinates.initialScale, 1, _this6.options.maxZoom);
-                                _this6.controlCoordinates.limitOffsetX = (_this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerWidth) / 2;
-                                _this6.controlCoordinates.limitOffsetY = (_this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerHeight) / 2;
-                                _this6.controlCoordinates.scaleDifference = _this6.controlCoordinates.targetScale - _this6.controlCoordinates.initialScale;
-                                _this6.controlCoordinates.targetOffsetX = _this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerWidth ? 0 : _this6.minMax(_this6.controlCoordinates.initialOffsetX - (_this6.controlCoordinates.pinchOffsetX - _this6.controlCoordinates.containerOffsetX - _this6.controlCoordinates.containerWidth / 2 - _this6.controlCoordinates.initialOffsetX) / (_this6.controlCoordinates.targetScale - _this6.controlCoordinates.scaleDifference) * _this6.controlCoordinates.scaleDifference, _this6.controlCoordinates.limitOffsetX * -1, _this6.controlCoordinates.limitOffsetX);
-                                _this6.controlCoordinates.targetOffsetY = _this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerHeight ? 0 : _this6.minMax(_this6.controlCoordinates.initialOffsetY - (_this6.controlCoordinates.pinchOffsetY - _this6.controlCoordinates.containerOffsetY - _this6.controlCoordinates.containerHeight / 2 - _this6.controlCoordinates.initialOffsetY) / (_this6.controlCoordinates.targetScale - _this6.controlCoordinates.scaleDifference) * _this6.controlCoordinates.scaleDifference, _this6.controlCoordinates.limitOffsetY * -1, _this6.controlCoordinates.limitOffsetY);
-                                _this6.zoomPanElement(_this6.controlCoordinates.targetOffsetX + "px", _this6.controlCoordinates.targetOffsetY + "px", _this6.controlCoordinates.targetScale);
-                                if (_this6.controlCoordinates.targetScale > 1) {
-                                    _this6.controlCoordinates.zoomed = true;
-                                    if ((!_this6.domNodes.caption.style.opacity || _this6.domNodes.caption.style.opacity > 0) && _this6.domNodes.caption.style.display !== "none") _this6.fadeOut(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                                }
-                                _this6.controlCoordinates.initialPinchDistance = _this6.controlCoordinates.targetPinchDistance;
-                                _this6.controlCoordinates.initialScale = _this6.controlCoordinates.targetScale;
-                                _this6.controlCoordinates.initialOffsetX = _this6.controlCoordinates.targetOffsetX;
-                                _this6.controlCoordinates.initialOffsetY = _this6.controlCoordinates.targetOffsetY;
-                            }
-                        } else {
-                            _this6.controlCoordinates.targetScale = _this6.controlCoordinates.initialScale;
-                            _this6.controlCoordinates.limitOffsetX = (_this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerWidth) / 2;
-                            _this6.controlCoordinates.limitOffsetY = (_this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerHeight) / 2;
-                            _this6.controlCoordinates.targetOffsetX = _this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerWidth ? 0 : _this6.minMax(_this6.controlCoordinates.pointerOffsetX - (_this6.controlCoordinates.initialPointerOffsetX - _this6.controlCoordinates.initialOffsetX), _this6.controlCoordinates.limitOffsetX * -1, _this6.controlCoordinates.limitOffsetX);
-                            _this6.controlCoordinates.targetOffsetY = _this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerHeight ? 0 : _this6.minMax(_this6.controlCoordinates.pointerOffsetY - (_this6.controlCoordinates.initialPointerOffsetY - _this6.controlCoordinates.initialOffsetY), _this6.controlCoordinates.limitOffsetY * -1, _this6.controlCoordinates.limitOffsetY);
-                            if (Math.abs(_this6.controlCoordinates.targetOffsetX) === Math.abs(_this6.controlCoordinates.limitOffsetX)) {
-                                _this6.controlCoordinates.initialOffsetX = _this6.controlCoordinates.targetOffsetX;
-                                _this6.controlCoordinates.initialPointerOffsetX = _this6.controlCoordinates.pointerOffsetX;
-                            }
-                            if (Math.abs(_this6.controlCoordinates.targetOffsetY) === Math.abs(_this6.controlCoordinates.limitOffsetY)) {
-                                _this6.controlCoordinates.initialOffsetY = _this6.controlCoordinates.targetOffsetY;
-                                _this6.controlCoordinates.initialPointerOffsetY = _this6.controlCoordinates.pointerOffsetY;
-                            }
-                            _this6.setZoomData(_this6.controlCoordinates.initialScale, _this6.controlCoordinates.targetOffsetX, _this6.controlCoordinates.targetOffsetY);
-                            _this6.zoomPanElement(_this6.controlCoordinates.targetOffsetX + "px", _this6.controlCoordinates.targetOffsetY + "px", _this6.controlCoordinates.targetScale);
-                        }
-                    }
-                    /* Mouse Move implementation */ if (event.type === "mousemove" && _this6.controlCoordinates.mousedown) {
-                        if (event.type == "touchmove") return true;
-                        event.preventDefault();
-                        if (_this6.controlCoordinates.capture === false) return false;
-                        _this6.controlCoordinates.pointerOffsetX = event.clientX;
-                        _this6.controlCoordinates.pointerOffsetY = event.clientY;
-                        _this6.controlCoordinates.targetScale = _this6.controlCoordinates.initialScale;
-                        _this6.controlCoordinates.limitOffsetX = (_this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerWidth) / 2;
-                        _this6.controlCoordinates.limitOffsetY = (_this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale - _this6.controlCoordinates.containerHeight) / 2;
-                        _this6.controlCoordinates.targetOffsetX = _this6.controlCoordinates.imgWidth * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerWidth ? 0 : _this6.minMax(_this6.controlCoordinates.pointerOffsetX - (_this6.controlCoordinates.initialPointerOffsetX - _this6.controlCoordinates.initialOffsetX), _this6.controlCoordinates.limitOffsetX * -1, _this6.controlCoordinates.limitOffsetX);
-                        _this6.controlCoordinates.targetOffsetY = _this6.controlCoordinates.imgHeight * _this6.controlCoordinates.targetScale <= _this6.controlCoordinates.containerHeight ? 0 : _this6.minMax(_this6.controlCoordinates.pointerOffsetY - (_this6.controlCoordinates.initialPointerOffsetY - _this6.controlCoordinates.initialOffsetY), _this6.controlCoordinates.limitOffsetY * -1, _this6.controlCoordinates.limitOffsetY);
-                        if (Math.abs(_this6.controlCoordinates.targetOffsetX) === Math.abs(_this6.controlCoordinates.limitOffsetX)) {
-                            _this6.controlCoordinates.initialOffsetX = _this6.controlCoordinates.targetOffsetX;
-                            _this6.controlCoordinates.initialPointerOffsetX = _this6.controlCoordinates.pointerOffsetX;
-                        }
-                        if (Math.abs(_this6.controlCoordinates.targetOffsetY) === Math.abs(_this6.controlCoordinates.limitOffsetY)) {
-                            _this6.controlCoordinates.initialOffsetY = _this6.controlCoordinates.targetOffsetY;
-                            _this6.controlCoordinates.initialPointerOffsetY = _this6.controlCoordinates.pointerOffsetY;
-                        }
-                        _this6.setZoomData(_this6.controlCoordinates.initialScale, _this6.controlCoordinates.targetOffsetX, _this6.controlCoordinates.targetOffsetY);
-                        _this6.zoomPanElement(_this6.controlCoordinates.targetOffsetX + "px", _this6.controlCoordinates.targetOffsetY + "px", _this6.controlCoordinates.targetScale);
-                    }
-                    if (!_this6.controlCoordinates.zoomed) {
-                        _this6.controlCoordinates.swipeEnd = event.pageX || event.touches[0].pageX;
-                        _this6.controlCoordinates.swipeYEnd = event.pageY || event.touches[0].pageY;
-                        _this6.controlCoordinates.swipeDiff = _this6.controlCoordinates.swipeStart - _this6.controlCoordinates.swipeEnd;
-                        _this6.controlCoordinates.swipeYDiff = _this6.controlCoordinates.swipeYStart - _this6.controlCoordinates.swipeYEnd;
-                        if (_this6.options.animationSlide) _this6.slide(0, -_this6.controlCoordinates.swipeDiff + "px");
-                    }
-                });
-                this.addEventListener(this.domNodes.image, [
-                    "touchend." + this.eventNamespace,
-                    "mouseup." + this.eventNamespace,
-                    "touchcancel." + this.eventNamespace,
-                    "mouseleave." + this.eventNamespace,
-                    "pointerup",
-                    "pointercancel",
-                    "MSPointerUp",
-                    "MSPointerCancel"
-                ], function(event) {
-                    if (_this6.isTouchDevice && event.type === "touchend") {
-                        _this6.controlCoordinates.touchCount = event.touches.length;
-                        if (_this6.controlCoordinates.touchCount === 0) /* No touch */ {
-                            /* Set attributes */ if (_this6.currentImage) _this6.setZoomData(_this6.controlCoordinates.initialScale, _this6.controlCoordinates.targetOffsetX, _this6.controlCoordinates.targetOffsetY);
-                            if (_this6.controlCoordinates.initialScale === 1) {
-                                _this6.controlCoordinates.zoomed = false;
-                                if (_this6.domNodes.caption.style.display === "none") _this6.fadeIn(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                            }
-                            _this6.controlCoordinates.initialPinchDistance = null;
-                            _this6.controlCoordinates.capture = false;
-                        } else if (_this6.controlCoordinates.touchCount === 1) /* Single touch */ {
-                            _this6.controlCoordinates.initialPointerOffsetX = event.touches[0].clientX;
-                            _this6.controlCoordinates.initialPointerOffsetY = event.touches[0].clientY;
-                        } else if (_this6.controlCoordinates.touchCount > 1) _this6.controlCoordinates.initialPinchDistance = null;
-                    }
-                    if (_this6.controlCoordinates.mousedown) {
-                        _this6.controlCoordinates.mousedown = false;
-                        var possibleDir = true;
-                        if (!_this6.options.loop) {
-                            if (_this6.currentImageIndex === 0 && _this6.controlCoordinates.swipeDiff < 0) possibleDir = false;
-                            if (_this6.currentImageIndex >= _this6.relatedElements.length - 1 && _this6.controlCoordinates.swipeDiff > 0) possibleDir = false;
-                        }
-                        if (Math.abs(_this6.controlCoordinates.swipeDiff) > _this6.options.swipeTolerance && possibleDir) _this6.loadImage(_this6.controlCoordinates.swipeDiff > 0 ? 1 : -1);
-                        else if (_this6.options.animationSlide) _this6.slide(_this6.options.animationSpeed / 1000, "0px");
-                        if (_this6.options.swipeClose && Math.abs(_this6.controlCoordinates.swipeYDiff) > 50 && Math.abs(_this6.controlCoordinates.swipeDiff) < _this6.options.swipeTolerance) _this6.close();
-                    }
-                });
-                this.addEventListener(this.domNodes.image, [
-                    "dblclick"
-                ], function(event) {
-                    if (_this6.isTouchDevice) return;
-                    _this6.controlCoordinates.initialPointerOffsetX = event.clientX;
-                    _this6.controlCoordinates.initialPointerOffsetY = event.clientY;
-                    _this6.controlCoordinates.containerHeight = _this6.getDimensions(_this6.domNodes.image).height;
-                    _this6.controlCoordinates.containerWidth = _this6.getDimensions(_this6.domNodes.image).width;
-                    _this6.controlCoordinates.imgHeight = _this6.getDimensions(_this6.currentImage).height;
-                    _this6.controlCoordinates.imgWidth = _this6.getDimensions(_this6.currentImage).width;
-                    _this6.controlCoordinates.containerOffsetX = _this6.domNodes.image.offsetLeft;
-                    _this6.controlCoordinates.containerOffsetY = _this6.domNodes.image.offsetTop;
-                    _this6.currentImage.classList.add("sl-transition");
-                    if (!_this6.controlCoordinates.zoomed) {
-                        _this6.controlCoordinates.initialScale = _this6.options.doubleTapZoom;
-                        _this6.setZoomData(_this6.controlCoordinates.initialScale, 0, 0);
-                        _this6.zoomPanElement("0px", "0px", _this6.controlCoordinates.initialScale);
-                        if ((!_this6.domNodes.caption.style.opacity || _this6.domNodes.caption.style.opacity > 0) && _this6.domNodes.caption.style.display !== "none") _this6.fadeOut(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                        _this6.controlCoordinates.zoomed = true;
-                    } else {
-                        _this6.controlCoordinates.initialScale = 1;
-                        _this6.setZoomData(_this6.controlCoordinates.initialScale, 0, 0);
-                        _this6.zoomPanElement("0px", "0px", _this6.controlCoordinates.initialScale);
-                        _this6.controlCoordinates.zoomed = false;
-                        if (_this6.domNodes.caption.style.display === "none") _this6.fadeIn(_this6.domNodes.caption, _this6.options.fadeSpeed);
-                    }
-                    setTimeout(function() {
-                        if (_this6.currentImage) {
-                            _this6.currentImage.classList.remove("sl-transition");
-                            _this6.currentImage.style[_this6.transitionPrefix + "transform-origin"] = null;
-                        }
-                    }, 200);
-                    _this6.controlCoordinates.capture = true;
-                    return false;
-                });
-            }
-        },
-        {
-            key: "getDimensions",
-            value: function getDimensions(element) {
-                var styles = window.getComputedStyle(element), height = element.offsetHeight, width = element.offsetWidth, borderTopWidth = parseFloat(styles.borderTopWidth), borderBottomWidth = parseFloat(styles.borderBottomWidth), paddingTop = parseFloat(styles.paddingTop), paddingBottom = parseFloat(styles.paddingBottom), borderLeftWidth = parseFloat(styles.borderLeftWidth), borderRightWidth = parseFloat(styles.borderRightWidth), paddingLeft = parseFloat(styles.paddingLeft), paddingRight = parseFloat(styles.paddingRight);
-                return {
-                    height: height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom,
-                    width: width - borderLeftWidth - borderRightWidth - paddingLeft - paddingRight
-                };
-            }
-        },
-        {
-            key: "updateHash",
-            value: function updateHash() {
-                var newHash = "pid=" + (this.currentImageIndex + 1), newURL = window.location.href.split("#")[0] + "#" + newHash;
-                this.hashReseted = false;
-                if (this.pushStateSupport) window.history[this.historyHasChanges ? "replaceState" : "pushState"]("", document.title, newURL);
-                else // what is the browser target of this?
-                if (this.historyHasChanges) window.location.replace(newURL);
-                else window.location.hash = newHash;
-                if (!this.historyHasChanges) this.urlChangedOnce = true;
-                this.historyHasChanges = true;
-            }
-        },
-        {
-            key: "resetHash",
-            value: function resetHash() {
-                this.hashReseted = true;
-                if (this.urlChangedOnce) history.back();
-                else if (this.pushStateSupport) history.pushState("", document.title, window.location.pathname + window.location.search);
-                else window.location.hash = "";
-                //
-                //in case an history operation is still pending
-                clearTimeout(this.historyUpdateTimeout);
-            }
-        },
-        {
-            key: "updateURL",
-            value: function updateURL() {
-                clearTimeout(this.historyUpdateTimeout);
-                if (!this.historyHasChanges) this.updateHash(); // first time
-                else this.historyUpdateTimeout = setTimeout(this.updateHash.bind(this), 800);
-            }
-        },
-        {
-            key: "setCaption",
-            value: function setCaption(captionText, imageWidth) {
-                var _this7 = this;
-                if (this.options.captions && captionText && captionText !== "" && typeof captionText !== "undefined") {
-                    this.hide(this.domNodes.caption);
-                    this.domNodes.caption.style.width = imageWidth + "px";
-                    this.domNodes.caption.innerHTML = captionText;
-                    this.domNodes.image.appendChild(this.domNodes.caption);
-                    setTimeout(function() {
-                        _this7.fadeIn(_this7.domNodes.caption, _this7.options.fadeSpeed);
-                    }, this.options.captionDelay);
-                }
-            }
-        },
-        {
-            key: "slide",
-            value: function slide(speed, pos) {
-                if (!this.transitionCapable) return this.domNodes.image.style.left = pos;
-                this.domNodes.image.style[this.transitionPrefix + "transform"] = "translateX(" + pos + ")";
-                this.domNodes.image.style[this.transitionPrefix + "transition"] = this.transitionPrefix + "transform " + speed + "s linear";
-            }
-        },
-        {
-            key: "getRelated",
-            value: function getRelated(rel) {
-                var elems;
-                if (rel && rel !== false && rel !== "nofollow") elems = Array.from(this.elements).filter(function(element) {
-                    return element.getAttribute("rel") === rel;
-                });
-                else elems = this.elements;
-                return elems;
-            }
-        },
-        {
-            key: "openImage",
-            value: function openImage(element) {
-                var _this8 = this;
-                element.dispatchEvent(new Event("show." + this.eventNamespace));
-                this.globalScrollbarWidth = this.getScrollbarWidth();
-                if (this.options.disableScroll) {
-                    this.toggleScrollbar("hide");
-                    this.globalScrollbarWidth = 0;
-                }
-                if (this.options.htmlClass && this.options.htmlClass !== "") document.querySelector("html").classList.add(this.options.htmlClass);
-                document.body.appendChild(this.domNodes.wrapper);
-                this.domNodes.wrapper.appendChild(this.domNodes.image);
-                if (this.options.overlay) document.body.appendChild(this.domNodes.overlay);
-                this.relatedElements = this.getRelated(element.rel);
-                if (this.options.showCounter) {
-                    if (this.relatedElements.length == 1 && this.domNodes.wrapper.contains(this.domNodes.counter)) this.domNodes.wrapper.removeChild(this.domNodes.counter);
-                    else if (this.relatedElements.length > 1 && !this.domNodes.wrapper.contains(this.domNodes.counter)) this.domNodes.wrapper.appendChild(this.domNodes.counter);
-                }
-                if (this.options.download && this.domNodes.download) this.domNodes.wrapper.appendChild(this.domNodes.download);
-                this.isAnimating = true;
-                this.currentImageIndex = this.relatedElements.indexOf(element);
-                var targetURL = element.getAttribute(this.options.sourceAttr);
-                this.currentImage = document.createElement("img");
-                this.currentImage.style.display = "none";
-                this.currentImage.setAttribute("src", targetURL);
-                this.currentImage.dataset.scale = 1;
-                this.currentImage.dataset.translateX = 0;
-                this.currentImage.dataset.translateY = 0;
-                if (this.loadedImages.indexOf(targetURL) === -1) this.loadedImages.push(targetURL);
-                this.domNodes.image.innerHTML = "";
-                this.domNodes.image.setAttribute("style", "");
-                this.domNodes.image.appendChild(this.currentImage);
-                this.fadeIn(this.domNodes.overlay, this.options.fadeSpeed);
-                this.fadeIn([
-                    this.domNodes.counter,
-                    this.domNodes.navigation,
-                    this.domNodes.closeButton,
-                    this.domNodes.download
-                ], this.options.fadeSpeed);
-                this.show(this.domNodes.spinner);
-                this.domNodes.counter.querySelector(".sl-current").innerHTML = this.currentImageIndex + 1;
-                this.domNodes.counter.querySelector(".sl-total").innerHTML = this.relatedElements.length;
-                this.adjustImage();
-                if (this.options.preloading) this.preload();
-                setTimeout(function() {
-                    element.dispatchEvent(new Event("shown." + _this8.eventNamespace));
-                }, this.options.animationSpeed);
-            }
-        },
-        {
-            key: "forceFocus",
-            value: function forceFocus() {
-                var _this9 = this;
-                this.removeEventListener(document, "focusin." + this.eventNamespace);
-                this.addEventListener(document, "focusin." + this.eventNamespace, function(event) {
-                    if (document !== event.target && _this9.domNodes.wrapper !== event.target && !_this9.domNodes.wrapper.contains(event.target)) _this9.domNodes.wrapper.focus();
-                });
-            }
-        },
-        {
-            key: "addEventListener",
-            value: function addEventListener(elements, events, callback, opts) {
-                elements = this.wrap(elements);
-                events = this.wrap(events);
-                var _iterator = _createForOfIteratorHelper(elements), _step;
-                try {
-                    for(_iterator.s(); !(_step = _iterator.n()).done;){
-                        var element = _step.value;
-                        if (!element.namespaces) element.namespaces = {};
-                         // save the namespaces addEventListener the DOM element itself
-                        var _iterator2 = _createForOfIteratorHelper(events), _step2;
-                        try {
-                            for(_iterator2.s(); !(_step2 = _iterator2.n()).done;){
-                                var event = _step2.value;
-                                var options = opts || false;
-                                var needsPassiveFix = [
-                                    "touchstart",
-                                    "touchmove",
-                                    "mousewheel",
-                                    "DOMMouseScroll"
-                                ].indexOf(event.split(".")[0]) >= 0;
-                                if (needsPassiveFix && this.isPassiveEventsSupported) {
-                                    if (_typeof(options) === "object") options.passive = true;
-                                    else options = {
-                                        passive: true
-                                    };
-                                }
-                                element.namespaces[event] = callback;
-                                element.addEventListener(event.split(".")[0], callback, options);
-                            }
-                        } catch (err) {
-                            _iterator2.e(err);
-                        } finally{
-                            _iterator2.f();
-                        }
-                    }
-                } catch (err) {
-                    _iterator.e(err);
-                } finally{
-                    _iterator.f();
-                }
-            }
-        },
-        {
-            key: "removeEventListener",
-            value: function removeEventListener(elements, events) {
-                elements = this.wrap(elements);
-                events = this.wrap(events);
-                var _iterator3 = _createForOfIteratorHelper(elements), _step3;
-                try {
-                    for(_iterator3.s(); !(_step3 = _iterator3.n()).done;){
-                        var element = _step3.value;
-                        var _iterator4 = _createForOfIteratorHelper(events), _step4;
-                        try {
-                            for(_iterator4.s(); !(_step4 = _iterator4.n()).done;){
-                                var event = _step4.value;
-                                if (element.namespaces && element.namespaces[event]) {
-                                    element.removeEventListener(event.split(".")[0], element.namespaces[event]);
-                                    delete element.namespaces[event];
-                                }
-                            }
-                        } catch (err) {
-                            _iterator4.e(err);
-                        } finally{
-                            _iterator4.f();
-                        }
-                    }
-                } catch (err) {
-                    _iterator3.e(err);
-                } finally{
-                    _iterator3.f();
-                }
-            }
-        },
-        {
-            key: "fadeOut",
-            value: function fadeOut(elements, duration, callback) {
-                var _this10 = this;
-                elements = this.wrap(elements);
-                var _iterator5 = _createForOfIteratorHelper(elements), _step5;
-                try {
-                    for(_iterator5.s(); !(_step5 = _iterator5.n()).done;){
-                        var element = _step5.value;
-                        element.style.opacity = parseFloat(element) || window.getComputedStyle(element).getPropertyValue("opacity");
-                    }
-                } catch (err1) {
-                    _iterator5.e(err1);
-                } finally{
-                    _iterator5.f();
-                }
-                this.isFadeIn = false;
-                var step = 16.66666 / (duration || this.options.fadeSpeed), fade1 = function fade() {
-                    var currentOpacity = parseFloat(elements[0].style.opacity);
-                    if ((currentOpacity -= step) < 0) {
-                        var _iterator6 = _createForOfIteratorHelper(elements), _step6;
-                        try {
-                            for(_iterator6.s(); !(_step6 = _iterator6.n()).done;){
-                                var element = _step6.value;
-                                element.style.display = "none";
-                                // element.style.opacity = '';
-                                element.style.opacity = 1;
-                            }
-                        } catch (err) {
-                            _iterator6.e(err);
-                        } finally{
-                            _iterator6.f();
-                        }
-                        callback && callback.call(_this10, elements);
-                    } else {
-                        var _iterator7 = _createForOfIteratorHelper(elements), _step7;
-                        try {
-                            for(_iterator7.s(); !(_step7 = _iterator7.n()).done;){
-                                var _element = _step7.value;
-                                _element.style.opacity = currentOpacity;
-                            }
-                        } catch (err) {
-                            _iterator7.e(err);
-                        } finally{
-                            _iterator7.f();
-                        }
-                        requestAnimationFrame(fade);
-                    }
-                };
-                fade1();
-            }
-        },
-        {
-            key: "fadeIn",
-            value: function fadeIn(elements, duration, callback, display) {
-                var _this11 = this;
-                elements = this.wrap(elements);
-                var _iterator8 = _createForOfIteratorHelper(elements), _step8;
-                try {
-                    for(_iterator8.s(); !(_step8 = _iterator8.n()).done;){
-                        var element = _step8.value;
-                        if (element) {
-                            element.style.opacity = 0;
-                            element.style.display = display || "block";
-                        }
-                    }
-                } catch (err2) {
-                    _iterator8.e(err2);
-                } finally{
-                    _iterator8.f();
-                }
-                this.isFadeIn = true;
-                var opacityTarget = parseFloat(elements[0].dataset.opacityTarget || 1), step = 16.66666 * opacityTarget / (duration || this.options.fadeSpeed), fade2 = function fade() {
-                    var currentOpacity = parseFloat(elements[0].style.opacity);
-                    if (!((currentOpacity += step) > opacityTarget)) {
-                        var _iterator9 = _createForOfIteratorHelper(elements), _step9;
-                        try {
-                            for(_iterator9.s(); !(_step9 = _iterator9.n()).done;){
-                                var element = _step9.value;
-                                if (element) element.style.opacity = currentOpacity;
-                            }
-                        } catch (err) {
-                            _iterator9.e(err);
-                        } finally{
-                            _iterator9.f();
-                        }
-                        if (!_this11.isFadeIn) return;
-                        requestAnimationFrame(fade);
-                    } else {
-                        var _iterator10 = _createForOfIteratorHelper(elements), _step10;
-                        try {
-                            for(_iterator10.s(); !(_step10 = _iterator10.n()).done;){
-                                var _element2 = _step10.value;
-                                if (_element2) _element2.style.opacity = opacityTarget;
-                            }
-                        } catch (err) {
-                            _iterator10.e(err);
-                        } finally{
-                            _iterator10.f();
-                        }
-                        callback && callback.call(_this11, elements);
-                    }
-                };
-                fade2();
-            }
-        },
-        {
-            key: "hide",
-            value: function hide(elements) {
-                elements = this.wrap(elements);
-                var _iterator11 = _createForOfIteratorHelper(elements), _step11;
-                try {
-                    for(_iterator11.s(); !(_step11 = _iterator11.n()).done;){
-                        var element = _step11.value;
-                        if (element.style.display != "none") element.dataset.initialDisplay = element.style.display;
-                        element.style.display = "none";
-                    }
-                } catch (err) {
-                    _iterator11.e(err);
-                } finally{
-                    _iterator11.f();
-                }
-            }
-        },
-        {
-            key: "show",
-            value: function show(elements, display) {
-                elements = this.wrap(elements);
-                var _iterator12 = _createForOfIteratorHelper(elements), _step12;
-                try {
-                    for(_iterator12.s(); !(_step12 = _iterator12.n()).done;){
-                        var element = _step12.value;
-                        element.style.display = element.dataset.initialDisplay || display || "block";
-                    }
-                } catch (err) {
-                    _iterator12.e(err);
-                } finally{
-                    _iterator12.f();
-                }
-            }
-        },
-        {
-            key: "wrap",
-            value: function wrap(input) {
-                return typeof input[Symbol.iterator] === "function" && typeof input !== "string" ? input : [
-                    input
-                ];
-            }
-        },
-        {
-            key: "on",
-            value: function on(events, callback) {
-                events = this.wrap(events);
-                var _iterator13 = _createForOfIteratorHelper(this.elements), _step13;
-                try {
-                    for(_iterator13.s(); !(_step13 = _iterator13.n()).done;){
-                        var element = _step13.value;
-                        if (!element.fullyNamespacedEvents) element.fullyNamespacedEvents = {};
-                        var _iterator14 = _createForOfIteratorHelper(events), _step14;
-                        try {
-                            for(_iterator14.s(); !(_step14 = _iterator14.n()).done;){
-                                var event = _step14.value;
-                                element.fullyNamespacedEvents[event] = callback;
-                                element.addEventListener(event, callback);
-                            }
-                        } catch (err) {
-                            _iterator14.e(err);
-                        } finally{
-                            _iterator14.f();
-                        }
-                    }
-                } catch (err) {
-                    _iterator13.e(err);
-                } finally{
-                    _iterator13.f();
-                }
-                return this;
-            }
-        },
-        {
-            key: "off",
-            value: function off(events) {
-                events = this.wrap(events);
-                var _iterator15 = _createForOfIteratorHelper(this.elements), _step15;
-                try {
-                    for(_iterator15.s(); !(_step15 = _iterator15.n()).done;){
-                        var element = _step15.value;
-                        var _iterator16 = _createForOfIteratorHelper(events), _step16;
-                        try {
-                            for(_iterator16.s(); !(_step16 = _iterator16.n()).done;){
-                                var event = _step16.value;
-                                if (typeof element.fullyNamespacedEvents !== "undefined" && event in element.fullyNamespacedEvents) element.removeEventListener(event, element.fullyNamespacedEvents[event]);
-                            }
-                        } catch (err) {
-                            _iterator16.e(err);
-                        } finally{
-                            _iterator16.f();
-                        }
-                    }
-                } catch (err) {
-                    _iterator15.e(err);
-                } finally{
-                    _iterator15.f();
-                }
-                return this;
-            }
-        },
-        {
-            key: "open",
-            value: function open(elem) {
-                var position = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-                elem = elem || this.elements[0];
-                if (typeof jQuery !== "undefined" && elem instanceof jQuery) elem = elem.get(0);
-                if (position > 0) elem = this.elements[position];
-                this.initialImageIndex = this.elements.indexOf(elem);
-                if (this.initialImageIndex > -1) this.openImage(elem);
-            }
-        },
-        {
-            key: "openPosition",
-            value: function openPosition(position) {
-                var elem = this.elements[position];
-                this.open(elem, position);
-            }
-        },
-        {
-            key: "next",
-            value: function next() {
-                this.loadImage(1);
-            }
-        },
-        {
-            key: "prev",
-            value: function prev() {
-                this.loadImage(-1);
-            }
-        },
-        {
-            key: "getLighboxData",
-            value: function getLighboxData() {
-                return {
-                    currentImageIndex: this.currentImageIndex,
-                    currentImage: this.currentImage,
-                    globalScrollbarWidth: this.globalScrollbarWidth
-                };
-            }
-        },
-        {
-            key: "destroy",
-            value: function destroy() {
-                //remove all custom event listeners from elements
-                this.off([
-                    "close." + this.eventNamespace,
-                    "closed." + this.eventNamespace,
-                    "nextImageLoaded." + this.eventNamespace,
-                    "prevImageLoaded." + this.eventNamespace,
-                    "change." + this.eventNamespace,
-                    "nextDone." + this.eventNamespace,
-                    "prevDone." + this.eventNamespace,
-                    "error." + this.eventNamespace,
-                    "changed." + this.eventNamespace,
-                    "next." + this.eventNamespace,
-                    "prev." + this.eventNamespace,
-                    "show." + this.eventNamespace,
-                    "shown." + this.eventNamespace
-                ]);
-                this.removeEventListener(this.elements, "click." + this.eventNamespace);
-                this.removeEventListener(document, "focusin." + this.eventNamespace);
-                this.removeEventListener(document.body, "contextmenu." + this.eventNamespace);
-                this.removeEventListener(document.body, "keyup." + this.eventNamespace);
-                this.removeEventListener(this.domNodes.navigation.getElementsByTagName("button"), "click." + this.eventNamespace);
-                this.removeEventListener(this.domNodes.closeButton, "click." + this.eventNamespace);
-                this.removeEventListener(window, "resize." + this.eventNamespace);
-                this.removeEventListener(window, "hashchange." + this.eventNamespace);
-                this.close();
-                if (this.isOpen) {
-                    document.body.removeChild(this.domNodes.wrapper);
-                    document.body.removeChild(this.domNodes.overlay);
-                }
-                this.elements = null;
-            }
-        },
-        {
-            key: "refresh",
-            value: function refresh() {
-                if (!this.initialSelector) throw "refreshing only works when you initialize using a selector!";
-                var options = this.options, selector = this.initialSelector;
-                this.destroy();
-                this.constructor(selector, options);
-                return this;
-            }
-        }
-    ]);
-    return SimpleLightbox1;
-}();
-var _default = SimpleLightbox;
-exports["default"] = _default;
-global.SimpleLightbox = SimpleLightbox;
+};
 
-},{}],"jo6P5":[function(require,module,exports) {
+},{}],"kaxSc":[function() {},{}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
@@ -2835,37 +1356,7 @@ function bind(fn, thisArg) {
 }
 exports.default = bind;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"cpqD8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpqD8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("./../utils.js");
@@ -7271,6 +5762,889 @@ var global = arguments[3];
     };
 });
 
-},{}],"kaxSc":[function() {},{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
+},{}],"14vSH":[function(require,module,exports) {
+var global = arguments[3];
+!function n(i, s, a) {
+    function r(e, t2) {
+        if (!s[e]) {
+            if (!i[e]) {
+                var o = undefined;
+                if (!t2 && o) return o(e, !0);
+                if (l) return l(e, !0);
+                throw (t2 = new Error("Cannot find module '" + e + "'")).code = "MODULE_NOT_FOUND", t2;
+            }
+            o = s[e] = {
+                exports: {}
+            }, i[e][0].call(o.exports, function(t) {
+                return r(i[e][1][t] || t);
+            }, o, o.exports, n, i, s, a);
+        }
+        return s[e].exports;
+    }
+    for(var l = undefined, t1 = 0; t1 < a.length; t1++)r(a[t1]);
+    return r;
+}({
+    1: [
+        function(t3, e1, o1) {
+            (function(e2) {
+                (function() {
+                    "use strict";
+                    function h1(t5) {
+                        return (h1 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(t) {
+                            return typeof t;
+                        } : function(t) {
+                            return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
+                        })(t5);
+                    }
+                    function f(t6, e) {
+                        var o, n, i, s, a = "undefined" != typeof Symbol && t6[Symbol.iterator] || t6["@@iterator"];
+                        if (a) return n = (o = !0, false), {
+                            s: function() {
+                                a = a.call(t6);
+                            },
+                            n: function() {
+                                var t = a.next();
+                                return o = t.done, t;
+                            },
+                            e: function(t) {
+                                n = !0, i = t;
+                            },
+                            f: function() {
+                                try {
+                                    o || null == a.return || a.return();
+                                } finally{
+                                    if (n) throw i;
+                                }
+                            }
+                        };
+                        if (Array.isArray(t6) || (a = r1(t6)) || e && t6 && "number" == typeof t6.length) return a && (t6 = a), s = 0, {
+                            s: e = function() {},
+                            n: function() {
+                                return s >= t6.length ? {
+                                    done: !0
+                                } : {
+                                    done: !1,
+                                    value: t6[s++]
+                                };
+                            },
+                            e: function(t) {
+                                throw t;
+                            },
+                            f: e
+                        };
+                        throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                    }
+                    function n1(t7) {
+                        return function(t) {
+                            if (Array.isArray(t)) return i1(t);
+                        }(t7) || function(t) {
+                            if ("undefined" != typeof Symbol && null != t[Symbol.iterator] || null != t["@@iterator"]) return Array.from(t);
+                        }(t7) || r1(t7) || function() {
+                            throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+                        }();
+                    }
+                    function r1(t, e) {
+                        var o;
+                        if (t) return "string" == typeof t ? i1(t, e) : "Map" === (o = "Object" === (o = Object.prototype.toString.call(t).slice(8, -1)) && t.constructor ? t.constructor.name : o) || "Set" === o ? Array.from(t) : "Arguments" === o || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o) ? i1(t, e) : void 0;
+                    }
+                    function i1(t, e) {
+                        (null == e || e > t.length) && (e = t.length);
+                        for(var o = 0, n = new Array(e); o < e; o++)n[o] = t[o];
+                        return n;
+                    }
+                    function s1(t, e) {
+                        for(var o = 0; o < e.length; o++){
+                            var n = e[o];
+                            n.enumerable = n.enumerable || !1, n.configurable = !0, "value" in n && (n.writable = !0), Object.defineProperty(t, n.key, n);
+                        }
+                    }
+                    function a1(t, e, o) {
+                        e in t ? Object.defineProperty(t, e, {
+                            value: o,
+                            enumerable: !0,
+                            configurable: !0,
+                            writable: !0
+                        }) : t[e] = o;
+                    }
+                    Object.defineProperty(o1, "__esModule", {
+                        value: !0
+                    }), o1.default = void 0;
+                    var t4 = function() {
+                        function i2(t9, e) {
+                            var o, n = this;
+                            if (!(this instanceof i2)) throw new TypeError("Cannot call a class as a function");
+                            a1(this, "defaultOptions", {
+                                sourceAttr: "href",
+                                overlay: !0,
+                                overlayOpacity: .7,
+                                spinner: !0,
+                                nav: !0,
+                                navText: [
+                                    "&lsaquo;",
+                                    "&rsaquo;"
+                                ],
+                                captions: !0,
+                                captionDelay: 0,
+                                captionSelector: "img",
+                                captionType: "attr",
+                                captionsData: "title",
+                                captionPosition: "bottom",
+                                captionClass: "",
+                                close: !0,
+                                closeText: "&times;",
+                                swipeClose: !0,
+                                showCounter: !0,
+                                fileExt: "png|jpg|jpeg|gif|webp",
+                                animationSlide: !0,
+                                animationSpeed: 250,
+                                preloading: !0,
+                                enableKeyboard: !0,
+                                loop: !0,
+                                rel: !1,
+                                docClose: !0,
+                                swipeTolerance: 50,
+                                className: "simple-lightbox",
+                                widthRatio: .8,
+                                heightRatio: .9,
+                                scaleImageToRatio: !1,
+                                disableRightClick: !1,
+                                disableScroll: !0,
+                                alertError: !0,
+                                alertErrorMessage: "Image not found, next image will be loaded",
+                                additionalHtml: !1,
+                                history: !0,
+                                throttleInterval: 0,
+                                doubleTapZoom: 2,
+                                maxZoom: 10,
+                                htmlClass: "has-lightbox",
+                                rtl: !1,
+                                fixedClass: "sl-fixed",
+                                fadeSpeed: 300,
+                                uniqueImages: !0,
+                                focus: !0,
+                                scrollZoom: !0,
+                                scrollZoomFactor: .5,
+                                download: !1
+                            }), a1(this, "transitionPrefix", void 0), a1(this, "isPassiveEventsSupported", void 0), a1(this, "transitionCapable", !1), a1(this, "isTouchDevice", "ontouchstart" in window), a1(this, "isAppleDevice", /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)), a1(this, "initialLocationHash", void 0), a1(this, "pushStateSupport", "pushState" in history), a1(this, "isOpen", !1), a1(this, "isAnimating", !1), a1(this, "isClosing", !1), a1(this, "isFadeIn", !1), a1(this, "urlChangedOnce", !1), a1(this, "hashReseted", !1), a1(this, "historyHasChanges", !1), a1(this, "historyUpdateTimeout", null), a1(this, "currentImage", void 0), a1(this, "eventNamespace", "simplelightbox"), a1(this, "domNodes", {}), a1(this, "loadedImages", []), a1(this, "initialImageIndex", 0), a1(this, "currentImageIndex", 0), a1(this, "initialSelector", null), a1(this, "globalScrollbarWidth", 0), a1(this, "controlCoordinates", {
+                                swipeDiff: 0,
+                                swipeYDiff: 0,
+                                swipeStart: 0,
+                                swipeEnd: 0,
+                                swipeYStart: 0,
+                                swipeYEnd: 0,
+                                mousedown: !1,
+                                imageLeft: 0,
+                                zoomed: !1,
+                                containerHeight: 0,
+                                containerWidth: 0,
+                                containerOffsetX: 0,
+                                containerOffsetY: 0,
+                                imgHeight: 0,
+                                imgWidth: 0,
+                                capture: !1,
+                                initialOffsetX: 0,
+                                initialOffsetY: 0,
+                                initialPointerOffsetX: 0,
+                                initialPointerOffsetY: 0,
+                                initialPointerOffsetX2: 0,
+                                initialPointerOffsetY2: 0,
+                                initialScale: 1,
+                                initialPinchDistance: 0,
+                                pointerOffsetX: 0,
+                                pointerOffsetY: 0,
+                                pointerOffsetX2: 0,
+                                pointerOffsetY2: 0,
+                                targetOffsetX: 0,
+                                targetOffsetY: 0,
+                                targetScale: 0,
+                                pinchOffsetX: 0,
+                                pinchOffsetY: 0,
+                                limitOffsetX: 0,
+                                limitOffsetY: 0,
+                                scaleDifference: 0,
+                                targetPinchDistance: 0,
+                                touchCount: 0,
+                                doubleTapped: !1,
+                                touchmoveCount: 0
+                            }), this.options = Object.assign(this.defaultOptions, e), this.isPassiveEventsSupported = this.checkPassiveEventsSupport(), "string" == typeof t9 ? (this.initialSelector = t9, this.elements = Array.from(document.querySelectorAll(t9))) : this.elements = void 0 !== t9.length && 0 < t9.length ? Array.from(t9) : [
+                                t9
+                            ], this.relatedElements = [], this.transitionPrefix = this.calculateTransitionPrefix(), this.transitionCapable = !1 !== this.transitionPrefix, this.initialLocationHash = this.hash, this.options.rel && (this.elements = this.getRelated(this.options.rel)), this.options.uniqueImages && (o = [], this.elements = Array.from(this.elements).filter(function(t) {
+                                t = t.getAttribute(n.options.sourceAttr);
+                                return -1 === o.indexOf(t) && (o.push(t), !0);
+                            })), this.createDomNodes(), this.options.close && this.domNodes.wrapper.appendChild(this.domNodes.closeButton), this.options.nav && this.domNodes.wrapper.appendChild(this.domNodes.navigation), this.options.spinner && this.domNodes.wrapper.appendChild(this.domNodes.spinner), this.addEventListener(this.elements, "click." + this.eventNamespace, function(t) {
+                                if (n.isValidLink(t.currentTarget)) {
+                                    if (t.preventDefault(), n.isAnimating) return !1;
+                                    n.initialImageIndex = n.elements.indexOf(t.currentTarget), n.openImage(t.currentTarget);
+                                }
+                            }), this.options.docClose && this.addEventListener(this.domNodes.wrapper, [
+                                "click." + this.eventNamespace,
+                                "touchstart." + this.eventNamespace
+                            ], function(t) {
+                                n.isOpen && t.target === t.currentTarget && n.close();
+                            }), this.options.disableRightClick && this.addEventListener(document.body, "contextmenu." + this.eventNamespace, function(t) {
+                                t.target.parentElement.classList.contains("sl-image") && t.preventDefault();
+                            }), this.options.enableKeyboard && this.addEventListener(document.body, "keyup." + this.eventNamespace, this.throttle(function(t) {
+                                n.controlCoordinates.swipeDiff = 0, n.isAnimating && "Escape" === t.key ? (n.currentImage.setAttribute("src", ""), n.isAnimating = !1, n.close()) : n.isOpen && (t.preventDefault(), "Escape" === t.key && n.close(), !n.isAnimating && -1 < [
+                                    "ArrowLeft",
+                                    "ArrowRight"
+                                ].indexOf(t.key) && n.loadImage("ArrowRight" === t.key ? 1 : -1));
+                            }, this.options.throttleInterval)), this.addEvents();
+                        }
+                        var t8, e3, o2;
+                        return t8 = i2, e3 = [
+                            {
+                                key: "checkPassiveEventsSupport",
+                                value: function() {
+                                    var t = !1;
+                                    try {
+                                        var e = Object.defineProperty({}, "passive", {
+                                            get: function() {
+                                                t = !0;
+                                            }
+                                        });
+                                        window.addEventListener("testPassive", null, e), window.removeEventListener("testPassive", null, e);
+                                    } catch (t10) {}
+                                    return t;
+                                }
+                            },
+                            {
+                                key: "getCaptionElement",
+                                value: function(t) {
+                                    var e, o;
+                                    return this.options.captionSelector.startsWith("+") ? (o = this.options.captionSelector.replace(/^\+/, "").trimStart(), !!(e = t.nextElementSibling).matches(o) && e) : this.options.captionSelector.startsWith(">") ? (o = this.options.captionSelector.replace(/^>/, "").trimStart(), t.querySelector(o)) : t.querySelector(this.options.captionSelector);
+                                }
+                            },
+                            {
+                                key: "generateQuerySelector",
+                                value: function(t) {
+                                    var e = t.tagName, o = t.id, n = t.className, i = t.parentNode;
+                                    if ("HTML" === e) return "HTML";
+                                    var s = e;
+                                    if (s += "" !== o ? "#".concat(o) : "", n) for(var a = n.trim().split(/\s/), r = 0; r < a.length; r++)s += ".".concat(a[r]);
+                                    for(var l = 1, d = t; d.previousElementSibling; d = d.previousElementSibling)l += 1;
+                                    return s += ":nth-child(".concat(l, ")"), "".concat(this.generateQuerySelector(i), " > ").concat(s);
+                                }
+                            },
+                            {
+                                key: "createDomNodes",
+                                value: function() {
+                                    var t, e;
+                                    this.domNodes.overlay = document.createElement("div"), this.domNodes.overlay.classList.add("sl-overlay"), this.domNodes.overlay.dataset.opacityTarget = this.options.overlayOpacity, this.domNodes.closeButton = document.createElement("button"), this.domNodes.closeButton.classList.add("sl-close"), this.domNodes.closeButton.innerHTML = this.options.closeText, this.domNodes.spinner = document.createElement("div"), this.domNodes.spinner.classList.add("sl-spinner"), this.domNodes.spinner.innerHTML = "<div></div>", this.domNodes.navigation = document.createElement("div"), this.domNodes.navigation.classList.add("sl-navigation"), this.domNodes.navigation.innerHTML = '<button class="sl-prev">'.concat(this.options.navText[0], '</button><button class="sl-next">').concat(this.options.navText[1], "</button>"), this.domNodes.counter = document.createElement("div"), this.domNodes.counter.classList.add("sl-counter"), this.domNodes.counter.innerHTML = '<span class="sl-current"></span>/<span class="sl-total"></span>', this.domNodes.download = document.createElement("div"), this.domNodes.download.classList.add("sl-download"), this.domNodes.downloadLink = document.createElement("a"), this.domNodes.downloadLink.setAttribute("download", ""), this.domNodes.downloadLink.textContent = this.options.download, this.domNodes.download.appendChild(this.domNodes.downloadLink), this.domNodes.caption = document.createElement("div"), this.domNodes.caption.classList.add("sl-caption", "pos-" + this.options.captionPosition), this.options.captionClass && (e = this.options.captionClass.split(/[\s,]+/), (t = this.domNodes.caption.classList).add.apply(t, n1(e))), this.domNodes.image = document.createElement("div"), this.domNodes.image.classList.add("sl-image"), this.domNodes.wrapper = document.createElement("div"), this.domNodes.wrapper.classList.add("sl-wrapper"), this.domNodes.wrapper.setAttribute("tabindex", -1), this.domNodes.wrapper.setAttribute("role", "dialog"), this.domNodes.wrapper.setAttribute("aria-hidden", !1), this.options.className && this.domNodes.wrapper.classList.add(this.options.className), this.options.rtl && this.domNodes.wrapper.classList.add("sl-dir-rtl");
+                                }
+                            },
+                            {
+                                key: "throttle",
+                                value: function(t, e) {
+                                    var o;
+                                    return function() {
+                                        o || (t.apply(this, arguments), o = !0, setTimeout(function() {
+                                            return o = !1;
+                                        }, e));
+                                    };
+                                }
+                            },
+                            {
+                                key: "isValidLink",
+                                value: function(t) {
+                                    return !this.options.fileExt || t.getAttribute(this.options.sourceAttr) && new RegExp("(" + this.options.fileExt + ")($|\\?.*$)", "i").test(t.getAttribute(this.options.sourceAttr));
+                                }
+                            },
+                            {
+                                key: "calculateTransitionPrefix",
+                                value: function() {
+                                    var t = (document.body || document.documentElement).style;
+                                    return "transition" in t ? "" : "WebkitTransition" in t ? "-webkit-" : "MozTransition" in t ? "-moz-" : "OTransition" in t && "-o";
+                                }
+                            },
+                            {
+                                key: "getScrollbarWidth",
+                                value: function() {
+                                    var t, e = document.createElement("div");
+                                    return e.classList.add("sl-scrollbar-measure"), document.body.appendChild(e), t = e.offsetWidth - e.clientWidth, document.body.removeChild(e), t;
+                                }
+                            },
+                            {
+                                key: "toggleScrollbar",
+                                value: function(t11) {
+                                    var e4, n = 0, o3 = [].slice.call(document.querySelectorAll("." + this.options.fixedClass));
+                                    return "hide" === t11 ? ((t11 = window.innerWidth) || (t11 = (e4 = document.documentElement.getBoundingClientRect()).right - Math.abs(e4.left)), (document.body.clientWidth < t11 || this.isAppleDevice) && (e4 = parseInt(window.getComputedStyle(document.body).paddingRight || 0, 10), n = this.getScrollbarWidth(), document.body.dataset.originalPaddingRight = e4, (0 < n || 0 == n && this.isAppleDevice) && (document.body.classList.add("hidden-scroll"), document.body.style.paddingRight = e4 + n + "px", o3.forEach(function(t) {
+                                        var e = t.style.paddingRight, o = window.getComputedStyle(t)["padding-right"];
+                                        t.dataset.originalPaddingRight = e, t.style.paddingRight = "".concat(parseFloat(o) + n, "px");
+                                    })))) : (document.body.classList.remove("hidden-scroll"), document.body.style.paddingRight = document.body.dataset.originalPaddingRight + "px", o3.forEach(function(t) {
+                                        var e = t.dataset.originalPaddingRight;
+                                        void 0 !== e && (t.style.paddingRight = e);
+                                    })), n;
+                                }
+                            },
+                            {
+                                key: "close",
+                                value: function() {
+                                    var t = this;
+                                    if (!this.isOpen || this.isAnimating || this.isClosing) return !1;
+                                    this.isClosing = !0;
+                                    var e, o = this.relatedElements[this.currentImageIndex];
+                                    for(e in o.dispatchEvent(new Event("close.simplelightbox")), this.options.history && (this.historyHasChanges = !1, this.hashReseted || this.resetHash()), this.removeEventListener(document, "focusin." + this.eventNamespace), this.fadeOut(this.domNodes.overlay, this.options.fadeSpeed), this.fadeOut(document.querySelectorAll(".sl-image img,  .sl-close, .sl-navigation, .sl-image .sl-caption, .sl-counter"), this.options.fadeSpeed, function() {
+                                        t.options.disableScroll && t.toggleScrollbar("show"), t.options.htmlClass && "" !== t.options.htmlClass && document.querySelector("html").classList.remove(t.options.htmlClass), document.body.removeChild(t.domNodes.wrapper), t.options.overlay && document.body.removeChild(t.domNodes.overlay), t.domNodes.additionalHtml = null, t.domNodes.download = null, o.dispatchEvent(new Event("closed.simplelightbox")), t.isClosing = !1;
+                                    }), this.currentImage = null, this.isOpen = !1, this.isAnimating = !1, this.controlCoordinates)this.controlCoordinates[e] = 0;
+                                    this.controlCoordinates.mousedown = !1, this.controlCoordinates.zoomed = !1, this.controlCoordinates.capture = !1, this.controlCoordinates.initialScale = this.minMax(1, 1, this.options.maxZoom), this.controlCoordinates.doubleTapped = !1;
+                                }
+                            },
+                            {
+                                key: "hash",
+                                get: function() {
+                                    return window.location.hash.substring(1);
+                                }
+                            },
+                            {
+                                key: "preload",
+                                value: function() {
+                                    var e = this, o = this.currentImageIndex, t12 = this.relatedElements.length, n = o + 1 < 0 ? t12 - 1 : t12 - 1 <= o + 1 ? 0 : o + 1, t12 = o - 1 < 0 ? t12 - 1 : t12 - 1 <= o - 1 ? 0 : o - 1, i = new Image, s = new Image;
+                                    i.addEventListener("load", function(t) {
+                                        t = t.target.getAttribute("src");
+                                        -1 === e.loadedImages.indexOf(t) && e.loadedImages.push(t), e.relatedElements[o].dispatchEvent(new Event("nextImageLoaded." + e.eventNamespace));
+                                    }), i.setAttribute("src", this.relatedElements[n].getAttribute(this.options.sourceAttr)), s.addEventListener("load", function(t) {
+                                        t = t.target.getAttribute("src");
+                                        -1 === e.loadedImages.indexOf(t) && e.loadedImages.push(t), e.relatedElements[o].dispatchEvent(new Event("prevImageLoaded." + e.eventNamespace));
+                                    }), s.setAttribute("src", this.relatedElements[t12].getAttribute(this.options.sourceAttr));
+                                }
+                            },
+                            {
+                                key: "loadImage",
+                                value: function(t13) {
+                                    var e = this, o = t13, t13 = (this.options.rtl && (t13 = -t13), this.relatedElements[this.currentImageIndex].dispatchEvent(new Event("change." + this.eventNamespace)), this.relatedElements[this.currentImageIndex].dispatchEvent(new Event((1 === t13 ? "next" : "prev") + "." + this.eventNamespace)), this.currentImageIndex + t13);
+                                    if (this.isAnimating || (t13 < 0 || t13 >= this.relatedElements.length) && !1 === this.options.loop) return !1;
+                                    this.currentImageIndex = t13 < 0 ? this.relatedElements.length - 1 : t13 > this.relatedElements.length - 1 ? 0 : t13, this.domNodes.counter.querySelector(".sl-current").innerHTML = this.currentImageIndex + 1, this.options.animationSlide && this.slide(this.options.animationSpeed / 1e3, -100 * o - this.controlCoordinates.swipeDiff + "px"), this.fadeOut(this.domNodes.image, this.options.fadeSpeed, function() {
+                                        e.isAnimating = !0, e.isClosing ? e.isAnimating = !1 : setTimeout(function() {
+                                            var t = e.relatedElements[e.currentImageIndex];
+                                            e.currentImage && (e.currentImage.setAttribute("src", t.getAttribute(e.options.sourceAttr)), -1 === e.loadedImages.indexOf(t.getAttribute(e.options.sourceAttr)) && e.show(e.domNodes.spinner), e.domNodes.image.contains(e.domNodes.caption) && e.domNodes.image.removeChild(e.domNodes.caption), e.adjustImage(o), e.options.preloading && e.preload());
+                                        }, 100);
+                                    });
+                                }
+                            },
+                            {
+                                key: "adjustImage",
+                                value: function(s) {
+                                    var a = this;
+                                    if (!this.currentImage) return !1;
+                                    var t14 = new Image, r = window.innerWidth * this.options.widthRatio, l = window.innerHeight * this.options.heightRatio;
+                                    t14.setAttribute("src", this.currentImage.getAttribute("src")), this.currentImage.dataset.scale = 1, this.currentImage.dataset.translateX = 0, this.currentImage.dataset.translateY = 0, this.zoomPanElement(0, 0, 1), t14.addEventListener("error", function(t) {
+                                        a.relatedElements[a.currentImageIndex].dispatchEvent(new Event("error." + a.eventNamespace)), a.isAnimating = !1, a.isOpen = !0, a.domNodes.spinner.style.display = "none";
+                                        var e = 1 === s || -1 === s;
+                                        if (a.initialImageIndex === a.currentImageIndex && e) return a.close();
+                                        a.options.alertError && alert(a.options.alertErrorMessage), a.loadImage(e ? s : 1);
+                                    }), t14.addEventListener("load", function(t) {
+                                        void 0 !== s && (a.relatedElements[a.currentImageIndex].dispatchEvent(new Event("changed." + a.eventNamespace)), a.relatedElements[a.currentImageIndex].dispatchEvent(new Event((1 === s ? "nextDone" : "prevDone") + "." + a.eventNamespace))), a.options.history && a.updateURL(), -1 === a.loadedImages.indexOf(a.currentImage.getAttribute("src")) && a.loadedImages.push(a.currentImage.getAttribute("src"));
+                                        var e, o, n, i = t.target.width, t = t.target.height;
+                                        (a.options.scaleImageToRatio || r < i || l < t) && (i /= e = r / l < i / t ? i / r : t / l, t /= e), a.domNodes.image.style.top = (window.innerHeight - t) / 2 + "px", a.domNodes.image.style.left = (window.innerWidth - i - a.globalScrollbarWidth) / 2 + "px", a.domNodes.image.style.width = i + "px", a.domNodes.image.style.height = t + "px", a.domNodes.spinner.style.display = "none", a.options.focus && a.forceFocus(), a.fadeIn(a.currentImage, a.options.fadeSpeed, function() {
+                                            a.options.focus && a.domNodes.wrapper.focus();
+                                        }), a.isOpen = !0, "string" == typeof a.options.captionSelector ? o = "self" === a.options.captionSelector ? a.relatedElements[a.currentImageIndex] : a.getCaptionElement(a.relatedElements[a.currentImageIndex]) : "function" == typeof a.options.captionSelector && (o = a.options.captionSelector(a.relatedElements[a.currentImageIndex])), a.options.captions && o && (n = "data" === a.options.captionType ? o.dataset[a.options.captionsData] : "text" === a.options.captionType ? o.innerHTML : o.getAttribute(a.options.captionsData)), a.options.loop ? 1 === a.relatedElements.length ? a.hide(a.domNodes.navigation.querySelectorAll(".sl-prev, .sl-next")) : a.show(a.domNodes.navigation.querySelectorAll(".sl-prev, .sl-next")) : (0 === a.currentImageIndex && a.hide(a.domNodes.navigation.querySelector(".sl-prev")), a.currentImageIndex >= a.relatedElements.length - 1 && a.hide(a.domNodes.navigation.querySelector(".sl-next")), 0 < a.currentImageIndex && a.show(a.domNodes.navigation.querySelector(".sl-prev")), a.currentImageIndex < a.relatedElements.length - 1 && a.show(a.domNodes.navigation.querySelector(".sl-next"))), 1 === s || -1 === s ? (a.options.animationSlide && (a.slide(0, 100 * s + "px"), setTimeout(function() {
+                                            a.slide(a.options.animationSpeed / 1e3, "0px");
+                                        }, 50)), a.fadeIn(a.domNodes.image, a.options.fadeSpeed, function() {
+                                            a.isAnimating = !1, a.setCaption(n, i);
+                                        })) : (a.isAnimating = !1, a.setCaption(n, i)), a.options.additionalHtml && !a.domNodes.additionalHtml && (a.domNodes.additionalHtml = document.createElement("div"), a.domNodes.additionalHtml.classList.add("sl-additional-html"), a.domNodes.additionalHtml.innerHTML = a.options.additionalHtml, a.domNodes.image.appendChild(a.domNodes.additionalHtml)), a.options.download && a.domNodes.downloadLink.setAttribute("href", a.currentImage.getAttribute("src"));
+                                    });
+                                }
+                            },
+                            {
+                                key: "zoomPanElement",
+                                value: function(t, e, o) {
+                                    this.currentImage.style[this.transitionPrefix + "transform"] = "translate(" + t + "," + e + ") scale(" + o + ")";
+                                }
+                            },
+                            {
+                                key: "minMax",
+                                value: function(t, e, o) {
+                                    return t < e ? e : o < t ? o : t;
+                                }
+                            },
+                            {
+                                key: "setZoomData",
+                                value: function(t, e, o) {
+                                    this.currentImage.dataset.scale = t, this.currentImage.dataset.translateX = e, this.currentImage.dataset.translateY = o;
+                                }
+                            },
+                            {
+                                key: "hashchangeHandler",
+                                value: function() {
+                                    this.isOpen && this.hash === this.initialLocationHash && (this.hashReseted = !0, this.close());
+                                }
+                            },
+                            {
+                                key: "addEvents",
+                                value: function() {
+                                    var o, n = this;
+                                    this.addEventListener(window, "resize." + this.eventNamespace, function(t) {
+                                        n.isOpen && n.adjustImage();
+                                    }), this.addEventListener(this.domNodes.closeButton, [
+                                        "click." + this.eventNamespace,
+                                        "touchstart." + this.eventNamespace
+                                    ], this.close.bind(this)), this.options.history && setTimeout(function() {
+                                        n.addEventListener(window, "hashchange." + n.eventNamespace, function(t) {
+                                            n.isOpen && n.hashchangeHandler();
+                                        });
+                                    }, 40), this.addEventListener(this.domNodes.navigation.getElementsByTagName("button"), "click." + this.eventNamespace, function(t) {
+                                        if (!t.currentTarget.tagName.match(/button/i)) return !0;
+                                        t.preventDefault(), n.controlCoordinates.swipeDiff = 0, n.loadImage(t.currentTarget.classList.contains("sl-next") ? 1 : -1);
+                                    }), this.options.scrollZoom && (o = 1, this.addEventListener(this.domNodes.image, [
+                                        "mousewheel",
+                                        "DOMMouseScroll"
+                                    ], function(t) {
+                                        if (n.controlCoordinates.mousedown || n.isAnimating || n.isClosing || !n.isOpen) return !0;
+                                        0 == n.controlCoordinates.containerHeight && (n.controlCoordinates.containerHeight = n.getDimensions(n.domNodes.image).height, n.controlCoordinates.containerWidth = n.getDimensions(n.domNodes.image).width, n.controlCoordinates.imgHeight = n.getDimensions(n.currentImage).height, n.controlCoordinates.imgWidth = n.getDimensions(n.currentImage).width, n.controlCoordinates.containerOffsetX = n.domNodes.image.offsetLeft, n.controlCoordinates.containerOffsetY = n.domNodes.image.offsetTop, n.controlCoordinates.initialOffsetX = parseFloat(n.currentImage.dataset.translateX), n.controlCoordinates.initialOffsetY = parseFloat(n.currentImage.dataset.translateY));
+                                        var e = t.delta || t.wheelDelta, e = (void 0 === e && (e = t.detail), e = Math.max(-1, Math.min(1, e)), o += e * n.options.scrollZoomFactor * o, o = Math.max(1, Math.min(n.options.maxZoom, o)), n.controlCoordinates.targetScale = o, document.documentElement.scrollTop || document.body.scrollTop);
+                                        n.controlCoordinates.pinchOffsetX = t.pageX, n.controlCoordinates.pinchOffsetY = t.pageY - e || 0, n.controlCoordinates.limitOffsetX = (n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale - n.controlCoordinates.containerWidth) / 2, n.controlCoordinates.limitOffsetY = (n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale - n.controlCoordinates.containerHeight) / 2, n.controlCoordinates.scaleDifference = n.controlCoordinates.targetScale - n.controlCoordinates.initialScale, n.controlCoordinates.targetOffsetX = n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale <= n.controlCoordinates.containerWidth ? 0 : n.minMax(n.controlCoordinates.initialOffsetX - (n.controlCoordinates.pinchOffsetX - n.controlCoordinates.containerOffsetX - n.controlCoordinates.containerWidth / 2 - n.controlCoordinates.initialOffsetX) / (n.controlCoordinates.targetScale - n.controlCoordinates.scaleDifference) * n.controlCoordinates.scaleDifference, -1 * n.controlCoordinates.limitOffsetX, n.controlCoordinates.limitOffsetX), n.controlCoordinates.targetOffsetY = n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale <= n.controlCoordinates.containerHeight ? 0 : n.minMax(n.controlCoordinates.initialOffsetY - (n.controlCoordinates.pinchOffsetY - n.controlCoordinates.containerOffsetY - n.controlCoordinates.containerHeight / 2 - n.controlCoordinates.initialOffsetY) / (n.controlCoordinates.targetScale - n.controlCoordinates.scaleDifference) * n.controlCoordinates.scaleDifference, -1 * n.controlCoordinates.limitOffsetY, n.controlCoordinates.limitOffsetY), n.zoomPanElement(n.controlCoordinates.targetOffsetX + "px", n.controlCoordinates.targetOffsetY + "px", n.controlCoordinates.targetScale), 1 < n.controlCoordinates.targetScale ? (n.controlCoordinates.zoomed = !0, (!n.domNodes.caption.style.opacity || 0 < n.domNodes.caption.style.opacity) && "none" !== n.domNodes.caption.style.display && n.fadeOut(n.domNodes.caption, n.options.fadeSpeed)) : (1 === n.controlCoordinates.initialScale && (n.controlCoordinates.zoomed = !1, "none" === n.domNodes.caption.style.display && n.fadeIn(n.domNodes.caption, n.options.fadeSpeed)), n.controlCoordinates.initialPinchDistance = null, n.controlCoordinates.capture = !1), n.controlCoordinates.initialPinchDistance = n.controlCoordinates.targetPinchDistance, n.controlCoordinates.initialScale = n.controlCoordinates.targetScale, n.controlCoordinates.initialOffsetX = n.controlCoordinates.targetOffsetX, n.controlCoordinates.initialOffsetY = n.controlCoordinates.targetOffsetY, n.setZoomData(n.controlCoordinates.targetScale, n.controlCoordinates.targetOffsetX, n.controlCoordinates.targetOffsetY), n.zoomPanElement(n.controlCoordinates.targetOffsetX + "px", n.controlCoordinates.targetOffsetY + "px", n.controlCoordinates.targetScale);
+                                    })), this.addEventListener(this.domNodes.image, [
+                                        "touchstart." + this.eventNamespace,
+                                        "mousedown." + this.eventNamespace
+                                    ], function(t) {
+                                        if ("A" === t.target.tagName && "touchstart" === t.type) return !0;
+                                        if ("mousedown" === t.type) t.preventDefault(), n.controlCoordinates.initialPointerOffsetX = t.clientX, n.controlCoordinates.initialPointerOffsetY = t.clientY, n.controlCoordinates.containerHeight = n.getDimensions(n.domNodes.image).height, n.controlCoordinates.containerWidth = n.getDimensions(n.domNodes.image).width, n.controlCoordinates.imgHeight = n.getDimensions(n.currentImage).height, n.controlCoordinates.imgWidth = n.getDimensions(n.currentImage).width, n.controlCoordinates.containerOffsetX = n.domNodes.image.offsetLeft, n.controlCoordinates.containerOffsetY = n.domNodes.image.offsetTop, n.controlCoordinates.initialOffsetX = parseFloat(n.currentImage.dataset.translateX), n.controlCoordinates.initialOffsetY = parseFloat(n.currentImage.dataset.translateY);
+                                        else if (n.controlCoordinates.touchCount = t.touches.length, n.controlCoordinates.initialPointerOffsetX = t.touches[0].clientX, n.controlCoordinates.initialPointerOffsetY = t.touches[0].clientY, n.controlCoordinates.containerHeight = n.getDimensions(n.domNodes.image).height, n.controlCoordinates.containerWidth = n.getDimensions(n.domNodes.image).width, n.controlCoordinates.imgHeight = n.getDimensions(n.currentImage).height, n.controlCoordinates.imgWidth = n.getDimensions(n.currentImage).width, n.controlCoordinates.containerOffsetX = n.domNodes.image.offsetLeft, n.controlCoordinates.containerOffsetY = n.domNodes.image.offsetTop, 1 === n.controlCoordinates.touchCount) {
+                                            if (n.controlCoordinates.doubleTapped) return n.currentImage.classList.add("sl-transition"), n.controlCoordinates.zoomed ? (n.controlCoordinates.initialScale = 1, n.setZoomData(n.controlCoordinates.initialScale, 0, 0), n.zoomPanElement("0px", "0px", n.controlCoordinates.initialScale), n.controlCoordinates.zoomed = !1) : (n.controlCoordinates.initialScale = n.options.doubleTapZoom, n.setZoomData(n.controlCoordinates.initialScale, 0, 0), n.zoomPanElement("0px", "0px", n.controlCoordinates.initialScale), (!n.domNodes.caption.style.opacity || 0 < n.domNodes.caption.style.opacity) && "none" !== n.domNodes.caption.style.display && n.fadeOut(n.domNodes.caption, n.options.fadeSpeed), n.controlCoordinates.zoomed = !0), setTimeout(function() {
+                                                n.currentImage && n.currentImage.classList.remove("sl-transition");
+                                            }, 200), !1;
+                                            n.controlCoordinates.doubleTapped = !0, setTimeout(function() {
+                                                n.controlCoordinates.doubleTapped = !1;
+                                            }, 300), n.controlCoordinates.initialOffsetX = parseFloat(n.currentImage.dataset.translateX), n.controlCoordinates.initialOffsetY = parseFloat(n.currentImage.dataset.translateY);
+                                        } else 2 === n.controlCoordinates.touchCount && (n.controlCoordinates.initialPointerOffsetX2 = t.touches[1].clientX, n.controlCoordinates.initialPointerOffsetY2 = t.touches[1].clientY, n.controlCoordinates.initialOffsetX = parseFloat(n.currentImage.dataset.translateX), n.controlCoordinates.initialOffsetY = parseFloat(n.currentImage.dataset.translateY), n.controlCoordinates.pinchOffsetX = (n.controlCoordinates.initialPointerOffsetX + n.controlCoordinates.initialPointerOffsetX2) / 2, n.controlCoordinates.pinchOffsetY = (n.controlCoordinates.initialPointerOffsetY + n.controlCoordinates.initialPointerOffsetY2) / 2, n.controlCoordinates.initialPinchDistance = Math.sqrt((n.controlCoordinates.initialPointerOffsetX - n.controlCoordinates.initialPointerOffsetX2) * (n.controlCoordinates.initialPointerOffsetX - n.controlCoordinates.initialPointerOffsetX2) + (n.controlCoordinates.initialPointerOffsetY - n.controlCoordinates.initialPointerOffsetY2) * (n.controlCoordinates.initialPointerOffsetY - n.controlCoordinates.initialPointerOffsetY2)));
+                                        return n.controlCoordinates.capture = !0, !!n.controlCoordinates.mousedown || (n.transitionCapable && (n.controlCoordinates.imageLeft = parseInt(n.domNodes.image.style.left, 10)), n.controlCoordinates.mousedown = !0, n.controlCoordinates.swipeDiff = 0, n.controlCoordinates.swipeYDiff = 0, n.controlCoordinates.swipeStart = t.pageX || t.touches[0].pageX, n.controlCoordinates.swipeYStart = t.pageY || t.touches[0].pageY, !1);
+                                    }), this.addEventListener(this.domNodes.image, [
+                                        "touchmove." + this.eventNamespace,
+                                        "mousemove." + this.eventNamespace,
+                                        "MSPointerMove"
+                                    ], function(t) {
+                                        if (!n.controlCoordinates.mousedown) return !0;
+                                        if ("touchmove" === t.type) {
+                                            if (!1 === n.controlCoordinates.capture) return !1;
+                                            n.controlCoordinates.pointerOffsetX = t.touches[0].clientX, n.controlCoordinates.pointerOffsetY = t.touches[0].clientY, n.controlCoordinates.touchCount = t.touches.length, n.controlCoordinates.touchmoveCount++, 1 < n.controlCoordinates.touchCount ? (n.controlCoordinates.pointerOffsetX2 = t.touches[1].clientX, n.controlCoordinates.pointerOffsetY2 = t.touches[1].clientY, n.controlCoordinates.targetPinchDistance = Math.sqrt((n.controlCoordinates.pointerOffsetX - n.controlCoordinates.pointerOffsetX2) * (n.controlCoordinates.pointerOffsetX - n.controlCoordinates.pointerOffsetX2) + (n.controlCoordinates.pointerOffsetY - n.controlCoordinates.pointerOffsetY2) * (n.controlCoordinates.pointerOffsetY - n.controlCoordinates.pointerOffsetY2)), null === n.controlCoordinates.initialPinchDistance && (n.controlCoordinates.initialPinchDistance = n.controlCoordinates.targetPinchDistance), 1 <= Math.abs(n.controlCoordinates.initialPinchDistance - n.controlCoordinates.targetPinchDistance) && (n.controlCoordinates.targetScale = n.minMax(n.controlCoordinates.targetPinchDistance / n.controlCoordinates.initialPinchDistance * n.controlCoordinates.initialScale, 1, n.options.maxZoom), n.controlCoordinates.limitOffsetX = (n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale - n.controlCoordinates.containerWidth) / 2, n.controlCoordinates.limitOffsetY = (n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale - n.controlCoordinates.containerHeight) / 2, n.controlCoordinates.scaleDifference = n.controlCoordinates.targetScale - n.controlCoordinates.initialScale, n.controlCoordinates.targetOffsetX = n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale <= n.controlCoordinates.containerWidth ? 0 : n.minMax(n.controlCoordinates.initialOffsetX - (n.controlCoordinates.pinchOffsetX - n.controlCoordinates.containerOffsetX - n.controlCoordinates.containerWidth / 2 - n.controlCoordinates.initialOffsetX) / (n.controlCoordinates.targetScale - n.controlCoordinates.scaleDifference) * n.controlCoordinates.scaleDifference, -1 * n.controlCoordinates.limitOffsetX, n.controlCoordinates.limitOffsetX), n.controlCoordinates.targetOffsetY = n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale <= n.controlCoordinates.containerHeight ? 0 : n.minMax(n.controlCoordinates.initialOffsetY - (n.controlCoordinates.pinchOffsetY - n.controlCoordinates.containerOffsetY - n.controlCoordinates.containerHeight / 2 - n.controlCoordinates.initialOffsetY) / (n.controlCoordinates.targetScale - n.controlCoordinates.scaleDifference) * n.controlCoordinates.scaleDifference, -1 * n.controlCoordinates.limitOffsetY, n.controlCoordinates.limitOffsetY), n.zoomPanElement(n.controlCoordinates.targetOffsetX + "px", n.controlCoordinates.targetOffsetY + "px", n.controlCoordinates.targetScale), 1 < n.controlCoordinates.targetScale && (n.controlCoordinates.zoomed = !0, (!n.domNodes.caption.style.opacity || 0 < n.domNodes.caption.style.opacity) && "none" !== n.domNodes.caption.style.display && n.fadeOut(n.domNodes.caption, n.options.fadeSpeed)), n.controlCoordinates.initialPinchDistance = n.controlCoordinates.targetPinchDistance, n.controlCoordinates.initialScale = n.controlCoordinates.targetScale, n.controlCoordinates.initialOffsetX = n.controlCoordinates.targetOffsetX, n.controlCoordinates.initialOffsetY = n.controlCoordinates.targetOffsetY)) : (n.controlCoordinates.targetScale = n.controlCoordinates.initialScale, n.controlCoordinates.limitOffsetX = (n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale - n.controlCoordinates.containerWidth) / 2, n.controlCoordinates.limitOffsetY = (n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale - n.controlCoordinates.containerHeight) / 2, n.controlCoordinates.targetOffsetX = n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale <= n.controlCoordinates.containerWidth ? 0 : n.minMax(n.controlCoordinates.pointerOffsetX - (n.controlCoordinates.initialPointerOffsetX - n.controlCoordinates.initialOffsetX), -1 * n.controlCoordinates.limitOffsetX, n.controlCoordinates.limitOffsetX), n.controlCoordinates.targetOffsetY = n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale <= n.controlCoordinates.containerHeight ? 0 : n.minMax(n.controlCoordinates.pointerOffsetY - (n.controlCoordinates.initialPointerOffsetY - n.controlCoordinates.initialOffsetY), -1 * n.controlCoordinates.limitOffsetY, n.controlCoordinates.limitOffsetY), Math.abs(n.controlCoordinates.targetOffsetX) === Math.abs(n.controlCoordinates.limitOffsetX) && (n.controlCoordinates.initialOffsetX = n.controlCoordinates.targetOffsetX, n.controlCoordinates.initialPointerOffsetX = n.controlCoordinates.pointerOffsetX), Math.abs(n.controlCoordinates.targetOffsetY) === Math.abs(n.controlCoordinates.limitOffsetY) && (n.controlCoordinates.initialOffsetY = n.controlCoordinates.targetOffsetY, n.controlCoordinates.initialPointerOffsetY = n.controlCoordinates.pointerOffsetY), n.setZoomData(n.controlCoordinates.initialScale, n.controlCoordinates.targetOffsetX, n.controlCoordinates.targetOffsetY), n.zoomPanElement(n.controlCoordinates.targetOffsetX + "px", n.controlCoordinates.targetOffsetY + "px", n.controlCoordinates.targetScale));
+                                        }
+                                        if ("mousemove" === t.type && n.controlCoordinates.mousedown) {
+                                            if ("touchmove" == t.type) return !0;
+                                            if (t.preventDefault(), !1 === n.controlCoordinates.capture) return !1;
+                                            n.controlCoordinates.pointerOffsetX = t.clientX, n.controlCoordinates.pointerOffsetY = t.clientY, n.controlCoordinates.targetScale = n.controlCoordinates.initialScale, n.controlCoordinates.limitOffsetX = (n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale - n.controlCoordinates.containerWidth) / 2, n.controlCoordinates.limitOffsetY = (n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale - n.controlCoordinates.containerHeight) / 2, n.controlCoordinates.targetOffsetX = n.controlCoordinates.imgWidth * n.controlCoordinates.targetScale <= n.controlCoordinates.containerWidth ? 0 : n.minMax(n.controlCoordinates.pointerOffsetX - (n.controlCoordinates.initialPointerOffsetX - n.controlCoordinates.initialOffsetX), -1 * n.controlCoordinates.limitOffsetX, n.controlCoordinates.limitOffsetX), n.controlCoordinates.targetOffsetY = n.controlCoordinates.imgHeight * n.controlCoordinates.targetScale <= n.controlCoordinates.containerHeight ? 0 : n.minMax(n.controlCoordinates.pointerOffsetY - (n.controlCoordinates.initialPointerOffsetY - n.controlCoordinates.initialOffsetY), -1 * n.controlCoordinates.limitOffsetY, n.controlCoordinates.limitOffsetY), Math.abs(n.controlCoordinates.targetOffsetX) === Math.abs(n.controlCoordinates.limitOffsetX) && (n.controlCoordinates.initialOffsetX = n.controlCoordinates.targetOffsetX, n.controlCoordinates.initialPointerOffsetX = n.controlCoordinates.pointerOffsetX), Math.abs(n.controlCoordinates.targetOffsetY) === Math.abs(n.controlCoordinates.limitOffsetY) && (n.controlCoordinates.initialOffsetY = n.controlCoordinates.targetOffsetY, n.controlCoordinates.initialPointerOffsetY = n.controlCoordinates.pointerOffsetY), n.setZoomData(n.controlCoordinates.initialScale, n.controlCoordinates.targetOffsetX, n.controlCoordinates.targetOffsetY), n.zoomPanElement(n.controlCoordinates.targetOffsetX + "px", n.controlCoordinates.targetOffsetY + "px", n.controlCoordinates.targetScale);
+                                        }
+                                        n.controlCoordinates.zoomed || (n.controlCoordinates.swipeEnd = t.pageX || t.touches[0].pageX, n.controlCoordinates.swipeYEnd = t.pageY || t.touches[0].pageY, n.controlCoordinates.swipeDiff = n.controlCoordinates.swipeStart - n.controlCoordinates.swipeEnd, n.controlCoordinates.swipeYDiff = n.controlCoordinates.swipeYStart - n.controlCoordinates.swipeYEnd, n.options.animationSlide && n.slide(0, -n.controlCoordinates.swipeDiff + "px"));
+                                    }), this.addEventListener(this.domNodes.image, [
+                                        "touchend." + this.eventNamespace,
+                                        "mouseup." + this.eventNamespace,
+                                        "touchcancel." + this.eventNamespace,
+                                        "mouseleave." + this.eventNamespace,
+                                        "pointerup",
+                                        "pointercancel",
+                                        "MSPointerUp",
+                                        "MSPointerCancel"
+                                    ], function(t) {
+                                        n.isTouchDevice && "touchend" === t.type && (n.controlCoordinates.touchCount = t.touches.length, 0 === n.controlCoordinates.touchCount ? (n.currentImage && n.setZoomData(n.controlCoordinates.initialScale, n.controlCoordinates.targetOffsetX, n.controlCoordinates.targetOffsetY), 1 === n.controlCoordinates.initialScale && (n.controlCoordinates.zoomed = !1, "none" === n.domNodes.caption.style.display && n.fadeIn(n.domNodes.caption, n.options.fadeSpeed)), n.controlCoordinates.initialPinchDistance = null, n.controlCoordinates.capture = !1) : 1 === n.controlCoordinates.touchCount ? (n.controlCoordinates.initialPointerOffsetX = t.touches[0].clientX, n.controlCoordinates.initialPointerOffsetY = t.touches[0].clientY) : 1 < n.controlCoordinates.touchCount && (n.controlCoordinates.initialPinchDistance = null)), n.controlCoordinates.mousedown && (t = (n.controlCoordinates.mousedown = !1, true), n.options.loop || (0 === n.currentImageIndex && n.controlCoordinates.swipeDiff < 0 && (t = !1), n.currentImageIndex >= n.relatedElements.length - 1 && 0 < n.controlCoordinates.swipeDiff && (t = !1)), Math.abs(n.controlCoordinates.swipeDiff) > n.options.swipeTolerance && t ? n.loadImage(0 < n.controlCoordinates.swipeDiff ? 1 : -1) : n.options.animationSlide && n.slide(n.options.animationSpeed / 1e3, "0px"), n.options.swipeClose && 50 < Math.abs(n.controlCoordinates.swipeYDiff) && Math.abs(n.controlCoordinates.swipeDiff) < n.options.swipeTolerance && n.close());
+                                    }), this.addEventListener(this.domNodes.image, [
+                                        "dblclick"
+                                    ], function(t) {
+                                        if (!n.isTouchDevice) return n.controlCoordinates.initialPointerOffsetX = t.clientX, n.controlCoordinates.initialPointerOffsetY = t.clientY, n.controlCoordinates.containerHeight = n.getDimensions(n.domNodes.image).height, n.controlCoordinates.containerWidth = n.getDimensions(n.domNodes.image).width, n.controlCoordinates.imgHeight = n.getDimensions(n.currentImage).height, n.controlCoordinates.imgWidth = n.getDimensions(n.currentImage).width, n.controlCoordinates.containerOffsetX = n.domNodes.image.offsetLeft, n.controlCoordinates.containerOffsetY = n.domNodes.image.offsetTop, n.currentImage.classList.add("sl-transition"), n.controlCoordinates.zoomed ? (n.controlCoordinates.initialScale = 1, n.setZoomData(n.controlCoordinates.initialScale, 0, 0), n.zoomPanElement("0px", "0px", n.controlCoordinates.initialScale), n.controlCoordinates.zoomed = !1, "none" === n.domNodes.caption.style.display && n.fadeIn(n.domNodes.caption, n.options.fadeSpeed)) : (n.controlCoordinates.initialScale = n.options.doubleTapZoom, n.setZoomData(n.controlCoordinates.initialScale, 0, 0), n.zoomPanElement("0px", "0px", n.controlCoordinates.initialScale), (!n.domNodes.caption.style.opacity || 0 < n.domNodes.caption.style.opacity) && "none" !== n.domNodes.caption.style.display && n.fadeOut(n.domNodes.caption, n.options.fadeSpeed), n.controlCoordinates.zoomed = !0), setTimeout(function() {
+                                            n.currentImage && (n.currentImage.classList.remove("sl-transition"), n.currentImage.style[n.transitionPrefix + "transform-origin"] = null);
+                                        }, 200), n.controlCoordinates.capture = !0, false;
+                                    });
+                                }
+                            },
+                            {
+                                key: "getDimensions",
+                                value: function(t) {
+                                    var e = window.getComputedStyle(t), o = t.offsetHeight, t = t.offsetWidth, n = parseFloat(e.borderTopWidth);
+                                    return {
+                                        height: o - parseFloat(e.borderBottomWidth) - n - parseFloat(e.paddingTop) - parseFloat(e.paddingBottom),
+                                        width: t - parseFloat(e.borderLeftWidth) - parseFloat(e.borderRightWidth) - parseFloat(e.paddingLeft) - parseFloat(e.paddingRight)
+                                    };
+                                }
+                            },
+                            {
+                                key: "updateHash",
+                                value: function() {
+                                    var t = "pid=" + (this.currentImageIndex + 1), e = window.location.href.split("#")[0] + "#" + t;
+                                    this.hashReseted = !1, this.pushStateSupport ? window.history[this.historyHasChanges ? "replaceState" : "pushState"]("", document.title, e) : this.historyHasChanges ? window.location.replace(e) : window.location.hash = t, this.historyHasChanges || (this.urlChangedOnce = !0), this.historyHasChanges = !0;
+                                }
+                            },
+                            {
+                                key: "resetHash",
+                                value: function() {
+                                    this.hashReseted = !0, this.urlChangedOnce ? history.back() : this.pushStateSupport ? history.pushState("", document.title, window.location.pathname + window.location.search) : window.location.hash = "", clearTimeout(this.historyUpdateTimeout);
+                                }
+                            },
+                            {
+                                key: "updateURL",
+                                value: function() {
+                                    clearTimeout(this.historyUpdateTimeout), this.historyHasChanges ? this.historyUpdateTimeout = setTimeout(this.updateHash.bind(this), 800) : this.updateHash();
+                                }
+                            },
+                            {
+                                key: "setCaption",
+                                value: function(t, e) {
+                                    var o = this;
+                                    this.options.captions && t && "" !== t && void 0 !== t && (this.hide(this.domNodes.caption), this.domNodes.caption.style.width = e + "px", this.domNodes.caption.innerHTML = t, this.domNodes.image.appendChild(this.domNodes.caption), setTimeout(function() {
+                                        o.fadeIn(o.domNodes.caption, o.options.fadeSpeed);
+                                    }, this.options.captionDelay));
+                                }
+                            },
+                            {
+                                key: "slide",
+                                value: function(t, e) {
+                                    if (!this.transitionCapable) return this.domNodes.image.style.left = e;
+                                    this.domNodes.image.style[this.transitionPrefix + "transform"] = "translateX(" + e + ")", this.domNodes.image.style[this.transitionPrefix + "transition"] = this.transitionPrefix + "transform " + t + "s linear";
+                                }
+                            },
+                            {
+                                key: "getRelated",
+                                value: function(e) {
+                                    var t15 = e && !1 !== e && "nofollow" !== e ? Array.from(this.elements).filter(function(t) {
+                                        return t.getAttribute("rel") === e;
+                                    }) : this.elements;
+                                    return t15;
+                                }
+                            },
+                            {
+                                key: "openImage",
+                                value: function(t) {
+                                    var e = this, o = (t.dispatchEvent(new Event("show." + this.eventNamespace)), this.globalScrollbarWidth = this.getScrollbarWidth(), this.options.disableScroll && (this.toggleScrollbar("hide"), this.globalScrollbarWidth = 0), this.options.htmlClass && "" !== this.options.htmlClass && document.querySelector("html").classList.add(this.options.htmlClass), document.body.appendChild(this.domNodes.wrapper), this.domNodes.wrapper.appendChild(this.domNodes.image), this.options.overlay && document.body.appendChild(this.domNodes.overlay), this.relatedElements = this.getRelated(t.rel), this.options.showCounter && (1 == this.relatedElements.length && this.domNodes.wrapper.contains(this.domNodes.counter) ? this.domNodes.wrapper.removeChild(this.domNodes.counter) : 1 < this.relatedElements.length && !this.domNodes.wrapper.contains(this.domNodes.counter) && this.domNodes.wrapper.appendChild(this.domNodes.counter)), this.options.download && this.domNodes.download && this.domNodes.wrapper.appendChild(this.domNodes.download), this.isAnimating = !0, this.currentImageIndex = this.relatedElements.indexOf(t), t.getAttribute(this.options.sourceAttr));
+                                    this.currentImage = document.createElement("img"), this.currentImage.style.display = "none", this.currentImage.setAttribute("src", o), this.currentImage.dataset.scale = 1, this.currentImage.dataset.translateX = 0, this.currentImage.dataset.translateY = 0, -1 === this.loadedImages.indexOf(o) && this.loadedImages.push(o), this.domNodes.image.innerHTML = "", this.domNodes.image.setAttribute("style", ""), this.domNodes.image.appendChild(this.currentImage), this.fadeIn(this.domNodes.overlay, this.options.fadeSpeed), this.fadeIn([
+                                        this.domNodes.counter,
+                                        this.domNodes.navigation,
+                                        this.domNodes.closeButton,
+                                        this.domNodes.download
+                                    ], this.options.fadeSpeed), this.show(this.domNodes.spinner), this.domNodes.counter.querySelector(".sl-current").innerHTML = this.currentImageIndex + 1, this.domNodes.counter.querySelector(".sl-total").innerHTML = this.relatedElements.length, this.adjustImage(), this.options.preloading && this.preload(), setTimeout(function() {
+                                        t.dispatchEvent(new Event("shown." + e.eventNamespace));
+                                    }, this.options.animationSpeed);
+                                }
+                            },
+                            {
+                                key: "forceFocus",
+                                value: function() {
+                                    var e = this;
+                                    this.removeEventListener(document, "focusin." + this.eventNamespace), this.addEventListener(document, "focusin." + this.eventNamespace, function(t) {
+                                        document === t.target || e.domNodes.wrapper === t.target || e.domNodes.wrapper.contains(t.target) || e.domNodes.wrapper.focus();
+                                    });
+                                }
+                            },
+                            {
+                                key: "addEventListener",
+                                value: function(t, e, o, n) {
+                                    t = this.wrap(t), e = this.wrap(e);
+                                    var i, s = f(t);
+                                    try {
+                                        for(s.s(); !(i = s.n()).done;){
+                                            var a, r = i.value, l = (r.namespaces || (r.namespaces = {}), f(e));
+                                            try {
+                                                for(l.s(); !(a = l.n()).done;){
+                                                    var d = a.value, c = n || !1;
+                                                    0 <= [
+                                                        "touchstart",
+                                                        "touchmove",
+                                                        "mousewheel",
+                                                        "DOMMouseScroll"
+                                                    ].indexOf(d.split(".")[0]) && this.isPassiveEventsSupported && ("object" === h1(c) ? c.passive = !0 : c = {
+                                                        passive: !0
+                                                    }), r.namespaces[d] = o, r.addEventListener(d.split(".")[0], o, c);
+                                                }
+                                            } catch (t) {
+                                                l.e(t);
+                                            } finally{
+                                                l.f();
+                                            }
+                                        }
+                                    } catch (t16) {
+                                        s.e(t16);
+                                    } finally{
+                                        s.f();
+                                    }
+                                }
+                            },
+                            {
+                                key: "removeEventListener",
+                                value: function(t, e) {
+                                    t = this.wrap(t), e = this.wrap(e);
+                                    var o, n = f(t);
+                                    try {
+                                        for(n.s(); !(o = n.n()).done;){
+                                            var i, s = o.value, a = f(e);
+                                            try {
+                                                for(a.s(); !(i = a.n()).done;){
+                                                    var r = i.value;
+                                                    s.namespaces && s.namespaces[r] && (s.removeEventListener(r.split(".")[0], s.namespaces[r]), delete s.namespaces[r]);
+                                                }
+                                            } catch (t) {
+                                                a.e(t);
+                                            } finally{
+                                                a.f();
+                                            }
+                                        }
+                                    } catch (t17) {
+                                        n.e(t17);
+                                    } finally{
+                                        n.f();
+                                    }
+                                }
+                            },
+                            {
+                                key: "fadeOut",
+                                value: function(r, t19, l) {
+                                    var e5, d = this, o4 = f(r = this.wrap(r));
+                                    try {
+                                        for(o4.s(); !(e5 = o4.n()).done;){
+                                            var n = e5.value;
+                                            n.style.opacity = parseFloat(n) || window.getComputedStyle(n).getPropertyValue("opacity");
+                                        }
+                                    } catch (t18) {
+                                        o4.e(t18);
+                                    } finally{
+                                        o4.f();
+                                    }
+                                    this.isFadeIn = !1;
+                                    var c = 16.66666 / (t19 || this.options.fadeSpeed);
+                                    (function t() {
+                                        var e = parseFloat(r[0].style.opacity);
+                                        if ((e -= c) < 0) {
+                                            var o, n = f(r);
+                                            try {
+                                                for(n.s(); !(o = n.n()).done;){
+                                                    var i = o.value;
+                                                    i.style.display = "none", i.style.opacity = 1;
+                                                }
+                                            } catch (t) {
+                                                n.e(t);
+                                            } finally{
+                                                n.f();
+                                            }
+                                            l && l.call(d, r);
+                                        } else {
+                                            var s, a = f(r);
+                                            try {
+                                                for(a.s(); !(s = a.n()).done;)s.value.style.opacity = e;
+                                            } catch (t20) {
+                                                a.e(t20);
+                                            } finally{
+                                                a.f();
+                                            }
+                                            requestAnimationFrame(t);
+                                        }
+                                    })();
+                                }
+                            },
+                            {
+                                key: "fadeIn",
+                                value: function(l, t22, d, e6) {
+                                    var o5, c = this, n2 = f(l = this.wrap(l));
+                                    try {
+                                        for(n2.s(); !(o5 = n2.n()).done;){
+                                            var i = o5.value;
+                                            i && (i.style.opacity = 0, i.style.display = e6 || "block");
+                                        }
+                                    } catch (t21) {
+                                        n2.e(t21);
+                                    } finally{
+                                        n2.f();
+                                    }
+                                    this.isFadeIn = !0;
+                                    var h = parseFloat(l[0].dataset.opacityTarget || 1), m = 16.66666 * h / (t22 || this.options.fadeSpeed);
+                                    (function t() {
+                                        var e = parseFloat(l[0].style.opacity);
+                                        if ((e += m) > h) {
+                                            var o, n = f(l);
+                                            try {
+                                                for(n.s(); !(o = n.n()).done;){
+                                                    var i = o.value;
+                                                    i && (i.style.opacity = h);
+                                                }
+                                            } catch (t) {
+                                                n.e(t);
+                                            } finally{
+                                                n.f();
+                                            }
+                                            d && d.call(c, l);
+                                        } else {
+                                            var s, a = f(l);
+                                            try {
+                                                for(a.s(); !(s = a.n()).done;){
+                                                    var r = s.value;
+                                                    r && (r.style.opacity = e);
+                                                }
+                                            } catch (t23) {
+                                                a.e(t23);
+                                            } finally{
+                                                a.f();
+                                            }
+                                            c.isFadeIn && requestAnimationFrame(t);
+                                        }
+                                    })();
+                                }
+                            },
+                            {
+                                key: "hide",
+                                value: function(t) {
+                                    var e, o = f(t = this.wrap(t));
+                                    try {
+                                        for(o.s(); !(e = o.n()).done;){
+                                            var n = e.value;
+                                            "none" != n.style.display && (n.dataset.initialDisplay = n.style.display), n.style.display = "none";
+                                        }
+                                    } catch (t24) {
+                                        o.e(t24);
+                                    } finally{
+                                        o.f();
+                                    }
+                                }
+                            },
+                            {
+                                key: "show",
+                                value: function(t, e) {
+                                    var o, n = f(t = this.wrap(t));
+                                    try {
+                                        for(n.s(); !(o = n.n()).done;){
+                                            var i = o.value;
+                                            i.style.display = i.dataset.initialDisplay || e || "block";
+                                        }
+                                    } catch (t25) {
+                                        n.e(t25);
+                                    } finally{
+                                        n.f();
+                                    }
+                                }
+                            },
+                            {
+                                key: "wrap",
+                                value: function(t) {
+                                    return "function" == typeof t[Symbol.iterator] && "string" != typeof t ? t : [
+                                        t
+                                    ];
+                                }
+                            },
+                            {
+                                key: "on",
+                                value: function(t, e) {
+                                    t = this.wrap(t);
+                                    var o, n = f(this.elements);
+                                    try {
+                                        for(n.s(); !(o = n.n()).done;){
+                                            var i, s = o.value, a = (s.fullyNamespacedEvents || (s.fullyNamespacedEvents = {}), f(t));
+                                            try {
+                                                for(a.s(); !(i = a.n()).done;){
+                                                    var r = i.value;
+                                                    s.fullyNamespacedEvents[r] = e, s.addEventListener(r, e);
+                                                }
+                                            } catch (t) {
+                                                a.e(t);
+                                            } finally{
+                                                a.f();
+                                            }
+                                        }
+                                    } catch (t26) {
+                                        n.e(t26);
+                                    } finally{
+                                        n.f();
+                                    }
+                                    return this;
+                                }
+                            },
+                            {
+                                key: "off",
+                                value: function(t) {
+                                    t = this.wrap(t);
+                                    var e, o = f(this.elements);
+                                    try {
+                                        for(o.s(); !(e = o.n()).done;){
+                                            var n, i = e.value, s = f(t);
+                                            try {
+                                                for(s.s(); !(n = s.n()).done;){
+                                                    var a = n.value;
+                                                    void 0 !== i.fullyNamespacedEvents && a in i.fullyNamespacedEvents && i.removeEventListener(a, i.fullyNamespacedEvents[a]);
+                                                }
+                                            } catch (t) {
+                                                s.e(t);
+                                            } finally{
+                                                s.f();
+                                            }
+                                        }
+                                    } catch (t27) {
+                                        o.e(t27);
+                                    } finally{
+                                        o.f();
+                                    }
+                                    return this;
+                                }
+                            },
+                            {
+                                key: "open",
+                                value: function(t) {
+                                    var e = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : 0;
+                                    t = t || this.elements[0], "undefined" != typeof jQuery && t instanceof jQuery && (t = t.get(0)), 0 < e && (t = this.elements[e]), this.initialImageIndex = this.elements.indexOf(t), -1 < this.initialImageIndex && this.openImage(t);
+                                }
+                            },
+                            {
+                                key: "openPosition",
+                                value: function(t) {
+                                    var e = this.elements[t];
+                                    this.open(e, t);
+                                }
+                            },
+                            {
+                                key: "next",
+                                value: function() {
+                                    this.loadImage(1);
+                                }
+                            },
+                            {
+                                key: "prev",
+                                value: function() {
+                                    this.loadImage(-1);
+                                }
+                            },
+                            {
+                                key: "getLighboxData",
+                                value: function() {
+                                    return {
+                                        currentImageIndex: this.currentImageIndex,
+                                        currentImage: this.currentImage,
+                                        globalScrollbarWidth: this.globalScrollbarWidth
+                                    };
+                                }
+                            },
+                            {
+                                key: "destroy",
+                                value: function() {
+                                    this.off([
+                                        "close." + this.eventNamespace,
+                                        "closed." + this.eventNamespace,
+                                        "nextImageLoaded." + this.eventNamespace,
+                                        "prevImageLoaded." + this.eventNamespace,
+                                        "change." + this.eventNamespace,
+                                        "nextDone." + this.eventNamespace,
+                                        "prevDone." + this.eventNamespace,
+                                        "error." + this.eventNamespace,
+                                        "changed." + this.eventNamespace,
+                                        "next." + this.eventNamespace,
+                                        "prev." + this.eventNamespace,
+                                        "show." + this.eventNamespace,
+                                        "shown." + this.eventNamespace
+                                    ]), this.removeEventListener(this.elements, "click." + this.eventNamespace), this.removeEventListener(document, "focusin." + this.eventNamespace), this.removeEventListener(document.body, "contextmenu." + this.eventNamespace), this.removeEventListener(document.body, "keyup." + this.eventNamespace), this.removeEventListener(this.domNodes.navigation.getElementsByTagName("button"), "click." + this.eventNamespace), this.removeEventListener(this.domNodes.closeButton, "click." + this.eventNamespace), this.removeEventListener(window, "resize." + this.eventNamespace), this.removeEventListener(window, "hashchange." + this.eventNamespace), this.close(), this.isOpen && (document.body.removeChild(this.domNodes.wrapper), document.body.removeChild(this.domNodes.overlay)), this.elements = null;
+                                }
+                            },
+                            {
+                                key: "refresh",
+                                value: function() {
+                                    var t, e;
+                                    if (this.initialSelector) return t = this.options, e = this.initialSelector, this.destroy(), this.constructor(e, t), this;
+                                    throw "refreshing only works when you initialize using a selector!";
+                                }
+                            }
+                        ], s1(t8.prototype, e3), o2 && s1(t8, o2), Object.defineProperty(t8, "prototype", {
+                            writable: !1
+                        }), i2;
+                    }();
+                    o1.default = t4, e2.SimpleLightbox = t4;
+                }).call(this);
+            }).call(this, "undefined" != typeof global ? global : "undefined" != typeof self ? self : "undefined" != typeof window ? window : {});
+        },
+        {}
+    ]
+}, {}, [
+    1
+]);
+
+},{}]},["1RB6v","8lqZg"], "8lqZg", "parcelRequired7c6")
 
 //# sourceMappingURL=index.975ef6c8.js.map
