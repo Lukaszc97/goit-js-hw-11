@@ -5,7 +5,7 @@ body {
     min-height: 100vh;
   }
   
-  .search-form {
+  #search-form {
     position: fixed;
     top: 0;
     left: 0;
