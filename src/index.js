@@ -19,8 +19,8 @@ searchForm.addEventListener("submit", async function (event) {
 
 // Wywołanie żądania HTTP
 async function performSearch(searchQuery) {
-  const encodedSearchQuery = encodeURIComponent(searchQuery);
-  const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodedSearchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
+  
+  const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
 
   try {
     const response = await axios.get(url);
@@ -94,7 +94,7 @@ async function resetGallery(searchQuery) {
   window.scrollTo({
     top: 0,
     left: 0,
-    behavior: "smooth",
+    
   });
   lightbox = null;
   totalHits = 0;
