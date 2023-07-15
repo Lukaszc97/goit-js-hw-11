@@ -1,108 +1,108 @@
-
 const apiKey = "38011218-cb164cf0dde7e2df63faecdfa";
 
-let page = 1; 
-const perPage = 20; 
+let page = 1;
+const perPage = 20;
 let totalHits = 0; // Całkowita liczba obrazków
 let fetchedImages = 0; // Liczba pobranych obrazków
 
+let lightbox = null;
+
 // Przechwytywanie formularza
 const searchForm = document.getElementById("search-form");
-searchForm.addEventListener("submit", function (event) {
+searchForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const searchQuery = event.target.elements.searchQuery.value;
 
-  resetGallery(searchQuery);
+  await resetGallery(searchQuery);
 });
 
-
-
 // Wywołanie żądania HTTP
-function performSearch(searchQuery) {
-    const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
+async function performSearch(searchQuery) {
+  const encodedSearchQuery = encodeURIComponent(searchQuery);
+  const url = `https://pixabay.com/api/?key=${apiKey}&q=${encodedSearchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
 
-  axios
-    .get(url)
-    .then((response) => { 
-      resetGallery
-      const images = response.data.hits;
-      totalHits = response.data.totalHits;
-      fetchedImages += images.length; // Zwiększa liczbę pobranych obrazków
+  try {
+    const response = await axios.get(url);
+    const images = response.data.hits;
+    totalHits = response.data.totalHits;
+    fetchedImages += images.length;
 
-      if (images.length === 0) {
-        showNotification("Sorry, there are no images matching your search query. Please try again.");
-      } else {
-        showNotification (`Hooray! We found ${totalHits} images.`)
-        appendImages(images);
+    if (images.length === 0) {
+      showNotification("Sorry, there are no images matching your search query. Please try again.");
+    } else {
+      showNotification(`Hooray! We found ${totalHits} images.`);
+      appendImages(images);
+      initLightbox();
 
+      const observer = new IntersectionObserver(handleIntersection, {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1.0,
+      });
 
-        const observer = new IntersectionObserver(handleIntersection, {
-          root: null,
-          rootMargin: "0px",
-          threshold: 1.0,
-        });
-
-        // Przypisanie obserwatora do ostatniego obrazka w galerii
-        const lastImage = document.querySelector(".gallery .photo-card:last-child");
-        observer.observe(lastImage);     
-        
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+      const lastImage = document.querySelector(".gallery .photo-card:last-child");
+      observer.observe(lastImage);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
+
 // Pobranie kolejnej strony z obrazkami
-function fetchMoreImages() {
+async function fetchMoreImages() {
   const searchQuery = document.getElementById("searchQuery").value;
   const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${perPage}`;
 
-  axios
-    .get(url)
-    .then((response) => {
-      const images = response.data.hits;
-      fetchedImages += images.length;
+  try {
+    const response = await axios.get(url);
+    const images = response.data.hits;
+    fetchedImages += images.length;
 
-      if (fetchedImages >= 501) {
-        // Blokowanie pobierania po osiągnięciu 500 obrazków
-        showNotification("You have reached the maximum limit of 500 images.");
-        return;
+    if (fetchedImages >= 501) {
+      // Blokowanie pobierania po osiągnięciu 500 obrazków
+      showNotification("You have reached the maximum limit of 500 images.");
+      return;
+    }
+
+    if (images.length !== 0) {
+      appendImages(images);
+      //SimpleLightbox
+      initLightbox();
+      const observer = new IntersectionObserver(handleIntersection, {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1.0,
+      });
+      const lastImage = document.querySelector(".gallery .photo-card:last-child");
+      observer.observe(lastImage);
+
+      if (fetchedImages >= totalHits) {
+        showNotification("We're sorry, but you've reached the end of search results.");
       }
-
-      if (images.length !== 0) {
-        appendImages(images);
-
-        const observer = new IntersectionObserver(handleIntersection, {
-          root: null,
-          rootMargin: "0px",
-          threshold: 1.0,
-        });
-        const lastImage = document.querySelector(".gallery .photo-card:last-child");
-        observer.observe(lastImage);
-
-        if (fetchedImages >= totalHits) {
-          showNotification("We're sorry, but you've reached the end of search results.");
-        }
-        
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
-
-// Funkcja resetująca galerię 
-function resetGallery(searchQuery) {
+// Funkcja resetująca galerię
+async function resetGallery(searchQuery) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
-  fetchedImages = 0; 
+  fetchedImages = 0;
+  page = 1;
   window.scrollTo({
     top: 0,
-    left: 0,})
+    left: 0,
+    behavior: "smooth",
+  });
+  lightbox = null;
+  totalHits = 0;
   // Wywołanie funkcji wyszukiwania i otrzymanie danych
-  performSearch(searchQuery);
+  await performSearch(searchQuery);
 }
+
+
 // Dodanie kolejnych obrazków do galerii
 function appendImages(images) {
   const gallery = document.querySelector(".gallery");
@@ -111,9 +111,6 @@ function appendImages(images) {
   images.forEach((image) => {
     createImageCard(image);
   });
-
-  //SimpleLightbox
-  initLightbox();
 }
 
 // Tworzenie karty obrazka
@@ -123,8 +120,8 @@ function createImageCard(image) {
   const card = document.createElement("div");
   card.classList.add("photo-card");
 
-  const imageElement = document.createElement("a"); 
-  imageElement.href = image.webformatURL; 
+  const imageElement = document.createElement("a");
+  imageElement.href = image.webformatURL;
   imageElement.classList.add("lightbox-target");
 
   const imageThumbnail = document.createElement("img");
@@ -145,6 +142,7 @@ function createImageCard(image) {
   card.append(imageElement, info);
   gallery.appendChild(card);
 }
+
 // Tworzenie informacji
 function createInfoItem(label, value) {
   const infoItem = document.createElement("p");
@@ -153,11 +151,17 @@ function createInfoItem(label, value) {
 
   return infoItem;
 }
+
 //SimpleLightbox po dodaniu nowych obrazków
 function initLightbox() {
-  const lightbox = new SimpleLightbox(".lightbox-target"); 
+  if (lightbox) {
+    lightbox.destroy();
+  }
+
+  lightbox = new SimpleLightbox(".lightbox-target");
   lightbox.refresh();
 }
+
 function handleIntersection(entries, observer) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -168,6 +172,8 @@ function handleIntersection(entries, observer) {
     }
   });
 }
+
+
 // Pokazywanie powiadomienia
 function showNotification(message) {
   Notiflix.Notify.init({ position: "bottom-right" });
